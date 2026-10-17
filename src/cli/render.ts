@@ -78,6 +78,8 @@ function stage(jobs: Job[]) {
       cpSync(join(audioDir, job.spec.music), join(stageDir, 'audio', job.spec.music));
     }
   }
+  const { logo } = JSON.parse(readFileSync(resolve('brand/brand.json'), 'utf8')) as { logo: string | null };
+  if (logo) cpSync(resolve('brand', logo), join(stageDir, 'brand', logo));
   mkdirSync(stageDir, { recursive: true });
 }
 

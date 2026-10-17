@@ -207,8 +207,17 @@ export const CtaPill: React.FC<{ text: string; size?: number; style?: CSSPropert
 );
 
 export const Handle: React.FC<{ size?: number }> = ({ size = 28 }) => (
-  <div style={{ fontFamily: fonts.body, fontWeight: 800, fontSize: size, color: colors.ink, opacity: 0.55, letterSpacing: 0.5 }}>
-    {theme.handle}
+  <div style={{ display: 'flex', alignItems: 'center', gap: size * 0.5 }}>
+    {theme.logo && (
+      // Source logo is 75 px, so it stays badge-sized to avoid upscaling blur; circle crop hides its square background
+      <Img
+        src={staticFile(theme.logo)}
+        style={{ width: size * 2.6, height: size * 2.6, borderRadius: '50%', boxShadow: '0 4px 12px rgba(46, 42, 71, 0.15)' }}
+      />
+    )}
+    <div style={{ fontFamily: fonts.body, fontWeight: 800, fontSize: size, color: colors.ink, opacity: 0.55, letterSpacing: 0.5 }}>
+      {theme.handle}
+    </div>
   </div>
 );
 
