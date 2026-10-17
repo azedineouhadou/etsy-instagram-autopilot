@@ -1,0 +1,61 @@
+{
+  "name": "PixoraPrintsCrafts",
+  "handle": "@pixoraprintscrafts",
+  "status": "draft — awaiting approval",
+  "colors": {
+    "ink": "#2E2A47",
+    "inkSoft": "#5B5677",
+    "paper": "#FFFBF5",
+    "pink": "#FFC8DD",
+    "peach": "#FFD6A5",
+    "butter": "#FDFFB6",
+    "mint": "#CAFFBF",
+    "sky": "#A0E7FF",
+    "lavender": "#CDB4DB",
+    "accent": "#FF6F91"
+  },
+  "backgroundRotation": [
+    "pink",
+    "mint",
+    "sky",
+    "butter",
+    "lavender",
+    "peach"
+  ],
+  "fonts": {
+    "heading": {
+      "family": "Fredoka",
+      "weights": [
+        600,
+        700
+      ],
+      "source": "Google Fonts (OFL)"
+    },
+    "body": {
+      "family": "Nunito",
+      "weights": [
+        400,
+        700,
+        800
+      ],
+      "source": "Google Fonts (OFL)"
+    }
+  },
+  "logo": null,
+  "formats": {
+    "image": {
+      "width": 1080,
+      "height": 1350
+    },
+    "carousel": {
+      "width": 1080,
+      "height": 1350
+    },
+    "reel": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30
+    }
+  },
+  "cta": "Link in bio"
+}

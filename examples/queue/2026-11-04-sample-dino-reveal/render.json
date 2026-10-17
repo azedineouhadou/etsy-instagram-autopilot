@@ -1,0 +1,11 @@
+{
+  "template": "page-flip-reel",
+  "hook": "Rainy day? Print this.",
+  "subline": "Screen-free fun in seconds",
+  "pagesTitle": "A peek inside",
+  "pagesBadge": "30 pages",
+  "pages": ["interior/01.png", "interior/02.png", "interior/03.png", "interior/04.png"],
+  "mockup": "mockups/01.png",
+  "points": ["Instant download", "Thick, simple outlines", "Print as many as you like"],
+  "cta": "Link in bio"
+}
