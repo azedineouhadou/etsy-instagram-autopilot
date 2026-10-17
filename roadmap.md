@@ -40,7 +40,7 @@ Current focus: **Phase 3 (publisher, dry run) + first real book in parallel**
 
 ## Phase 2.5 — First real book
 
-- [ ] Add the first book folder (`link.txt`, `mockups/`, `interior/`) on a new branch — Owner
+- [x] Add the first book folder (`link.txt`, `mockups/`, `interior/`) on a new branch — Owner
 - [ ] "process new books" → check `product.json` facts — Owner + Claude
 - [ ] Render one post of each template with the real book — Claude
 - [ ] Tune the templates on real artwork (sizes, crops, colours) — Claude
