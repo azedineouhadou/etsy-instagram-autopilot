@@ -9,6 +9,8 @@ const body = loadNunito('normal', { weights: ['400', '700', '800'], subsets: ['l
 export const theme = {
   colors: brand.colors,
   handle: brand.handle,
+  // Staged into the render's public dir under brand/ by src/cli/render.ts
+  logo: brand.logo ? `brand/${brand.logo}` : null,
   fonts: { heading: heading.fontFamily, body: body.fontFamily },
   formats: brand.formats,
 };

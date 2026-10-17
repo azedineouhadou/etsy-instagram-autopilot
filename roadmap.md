@@ -3,7 +3,7 @@
 Tick a box (`- [x]`) when a step is done. Claude ticks its own steps when it
 finishes them; the owner ticks theirs. **Owner** = you, **Claude** = Claude Code.
 
-Current focus: **Push phases 1–2 → first real book → Phase 3**
+Current focus: **Phase 3 (publisher, dry run) + first real book in parallel**
 
 ---
 
@@ -13,8 +13,8 @@ Current focus: **Push phases 1–2 → first real book → Phase 3**
 - [x] Install the instagram-agent plugin for the repo — Owner
 - [x] Finalize `brand/voice.md` — Owner
 - [x] Link `~/.claude/instagram/voice.md` to `brand/voice.md` — Claude
-- [ ] Push phases 1–2 (`setup/foundation-and-templates` branch → PR → merge) — Owner
-- [ ] Approve the brand look in `brand/brand.json` (colours, fonts, pink tape, dark CTA button), add logo if any — Owner
+- [x] Push phases 1–2 (`setup/foundation-and-templates` branch → PR → merge) — Owner
+- [x] Approve the brand look in `brand/brand.json` (colours, fonts, pink tape, dark CTA button), add logo if any — Owner
 - [ ] Decide on music for reels: royalty-free source, or silent for now — Owner
 - [ ] Decide whether to keep the rendered example media in the repo (~3.6 MB) — Owner
 - [ ] Decide on the extra "What you get" carousel slide — Owner
