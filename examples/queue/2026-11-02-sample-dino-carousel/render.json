@@ -1,0 +1,10 @@
+{
+  "template": "carousel",
+  "slides": [
+    { "kind": "cover", "eyebrow": "Printable coloring book", "headline": "Which page would they color first?", "subline": "Swipe and pick 1, 2 or 3", "image": "mockups/01.png" },
+    { "kind": "page", "caption": "1. Sunny day in the garden", "image": "interior/01.png" },
+    { "kind": "page", "caption": "2. A sky full of stars", "image": "interior/02.png" },
+    { "kind": "page", "caption": "3. Flower party", "image": "interior/03.png" },
+    { "kind": "cta", "headline": "30 pages. Hit print. It fits.", "image": "mockups/01.png", "points": ["Instant download", "Thick, simple outlines", "US Letter and A4"], "cta": "Link in bio" }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "template": "spotlight",
+  "background": "butter",
+  "eyebrow": "New in the shop",
+  "headline": "Rainy day? Print this.",
+  "subline": "30 coloring pages, ready in seconds",
+  "mockup": "mockups/01.png",
+  "badges": ["Instant download", "Ages 4–8", "Letter & A4"],
+  "cta": "Link in bio"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "2026-11-02-sample-dino-carousel",
+  "listingId": "9999999999",
+  "scheduledAt": "2026-11-02T18:00:00+01:00",
+  "approved": true,
+  "media": {
+    "type": "carousel",
+    "files": [
+      "media/01.png",
+      "media/02.png",
+      "media/03.png",
+      "media/04.png",
+      "media/05.png"
+    ]
+  },
+  "caption": "Which dino would your little one color first? 🦕\n\nSwipe to see three pages from the book, then tell us 1, 2 or 3 in the comments.\n\nLink in bio 🖍️",
+  "hashtags": [
+    "#coloringpages",
+    "#kidsactivities",
+    "#dinosaurs"
+  ],
+  "altText": "Three pages from a dinosaur coloring book on a pastel background."
+}

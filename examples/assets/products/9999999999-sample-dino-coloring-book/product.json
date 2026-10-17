@@ -1,0 +1,33 @@
+{
+  "listingId": "9999999999",
+  "title": "Sample Dinosaur Coloring Book for Kids",
+  "url": "https://www.etsy.com/listing/9999999999/sample-dinosaur-coloring-book",
+  "theme": "dinosaurs",
+  "ageRange": {
+    "min": 4,
+    "max": 8
+  },
+  "pageCount": 30,
+  "format": "digital",
+  "sellingPoints": [
+    "30 printable pages, print as many times as you like",
+    "Thick, simple outlines for little hands",
+    "Instant download, US Letter and A4"
+  ],
+  "keywords": [
+    "dinosaur coloring pages",
+    "printable coloring book",
+    "kids activity"
+  ],
+  "mockups": [
+    "mockups/01.png"
+  ],
+  "interior": [
+    "interior/01.png",
+    "interior/02.png",
+    "interior/03.png",
+    "interior/04.png"
+  ],
+  "sourceCheckedAt": "2026-10-17",
+  "notes": "Fixture for npm run validate:examples — not a real listing."
+}

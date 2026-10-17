@@ -1,0 +1,17 @@
+{
+  "id": "2026-11-04-sample-dino-reveal",
+  "listingId": "9999999999",
+  "scheduledAt": "2026-11-04T18:00:00+01:00",
+  "approved": false,
+  "media": {
+    "type": "reel",
+    "video": "media/reel.mp4",
+    "cover": "media/cover.png",
+    "shareToFeed": true
+  },
+  "caption": "Rainy afternoon plan: print, color, repeat. 🌧️🖍️\n\nLink in bio",
+  "hashtags": [
+    "#printables",
+    "#coloringbook"
+  ]
+}

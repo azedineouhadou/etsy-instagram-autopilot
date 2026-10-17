@@ -1,0 +1,12 @@
+{
+  "id": "2026-10-31-sample-dino-page-preview",
+  "listingId": "9999999999",
+  "scheduledAt": "2026-10-31T18:00:00+01:00",
+  "approved": true,
+  "media": {
+    "type": "image",
+    "file": "media/01.png"
+  },
+  "caption": "Sneak peek: page 12 of the dino book. 🦕\n\nLink in bio",
+  "hashtags": ["#coloringpages"]
+}

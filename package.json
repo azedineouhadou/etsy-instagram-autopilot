@@ -1,0 +1,35 @@
+{
+  "name": "etsy-instagram-autopilot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Generate Instagram posts for Etsy coloring and activity books, then publish them on a schedule.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "intake": "tsx src/cli/intake.ts",
+    "validate": "tsx src/cli/validate.ts",
+    "validate:examples": "tsx src/cli/validate.ts --root examples",
+    "render": "tsx src/cli/render.ts",
+    "render:examples": "tsx src/cli/render.ts --root examples",
+    "studio": "remotion studio src/video/index.ts --public-dir=.cache/render-public"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.536",
+    "@remotion/cli": "4.0.536",
+    "@remotion/google-fonts": "4.0.536",
+    "@remotion/renderer": "4.0.536",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.536",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}
