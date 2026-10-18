@@ -290,7 +290,7 @@ queue/2026-11-02-dino-carousel/
 {
   "id": "2026-11-02-dino-carousel",
   "listingId": "1234567890",
-  "scheduledAt": "2026-11-02T18:00:00+01:00",
+  "scheduledAt": "2026-11-02T18:00:00-05:00",
   "approved": true,
   "media": { "type": "carousel", "files": ["media/01.jpg", "media/02.jpg"] },
   "caption": "Which page would they color first? 🦕\n\nLink in bio",
@@ -303,7 +303,7 @@ queue/2026-11-02-dino-carousel/
 |---|---|
 | `id` | Same as the folder name |
 | `listingId` | A book that exists in `assets/products/` |
-| `scheduledAt` | Date and time **with offset** — `+01:00` for Morocco most of the year. Two posts can't share a time |
+| `scheduledAt` | Date and time **with offset**, in US Eastern time for our US audience: `-04:00` in summer, `-05:00` in winter (from 1 Nov 2026). Best windows: `brand/schedule.json`. Two posts can't share a time |
 | `approved` | Only `true` posts get published |
 | `media` | Filled in by `npm run render` |
 | `caption` + `hashtags` | 2,200 characters max together; at most **5 hashtags** |
@@ -414,7 +414,7 @@ Text that's too long is rejected so it can't break the layout.
 | `warn … new book waiting for product.json` | Ask Claude to "process new books" |
 | `file not found: …` | Wrong image path, or run `npm run render` |
 | `folder must start with "<id>-"` | Rename the book folder to match `listingId` |
-| `scheduledAt: Invalid ISO datetime` | Add the offset: `2026-11-02T18:00:00+01:00` |
+| `scheduledAt: Invalid ISO datetime` | Add the offset: `2026-11-02T18:00:00-05:00` |
 | `same scheduledAt as …` | Move one post to another time |
 | `hashtags: Too big` | 5 hashtags max |
 | `warn … featured N day(s) earlier` | Same book less than 3 days apart — consider another book |
