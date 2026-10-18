@@ -18,7 +18,8 @@ the full layout; this file holds the procedures Claude runs.
   the owner merging a post is the go-ahead. Never merge, never trigger the
   workflows, never set `approved: true` on a post the owner asked to hold.
 - Finish every change with `npm run validate` and report its output.
-- When a step in `roadmap.md` is finished, tick it and update "Current focus".
+- When a step in the README's **Roadmap** is finished, tick it and update its
+  "Next up" line.
 
 ## Procedure: "process new books" / "add listing <link>"
 
@@ -47,7 +48,8 @@ the full layout; this file holds the procedures Claude runs.
 
 (Becomes a single command in phase 6.) Use `ig-plan`, `ig-reel`, `ig-caption`,
 `ig-carousel` and `ig-human`. Per post create `queue/<YYYY-MM-DD>-<slug>/`
-with `post.json` and `render.json` (formats in `README.md` §5). Schedule posts
+with `post.json` and `render.json` (formats in the README, "What a post is";
+full schemas in `src/schemas/post.ts` and `src/render/spec.ts`). Schedule posts
 in the windows in `brand/schedule.json` (US Eastern), using the Eastern offset
 for that date (`-04:00` or `-05:00` — check, US daylight saving changes), then
 `npm run render` and `npm run validate`. Respect the rotation and carousel
