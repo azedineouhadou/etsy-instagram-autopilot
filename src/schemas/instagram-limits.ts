@@ -5,6 +5,8 @@ export const INSTAGRAM_LIMITS = {
   hashtagsMax: 5,
   carouselMinItems: 2,
   carouselMaxItems: 10,
+  // Product library images can be PNG; anything we hand to Instagram must be JPEG
   imageExtensions: ['.png', '.jpg', '.jpeg'],
+  publishImageExtensions: ['.jpg', '.jpeg'],
   videoExtensions: ['.mp4'],
 } as const;

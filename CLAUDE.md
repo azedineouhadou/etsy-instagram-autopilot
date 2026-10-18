@@ -11,6 +11,9 @@ the full layout; this file holds the procedures Claude runs.
   invent numbers, ages, reviews or claims. Follow `brand/voice.md` (no
   trademarks, no "therapy", no "free" unless it is).
 - Ask before downloading anything from Etsy (images included).
+- Never run `npm run publish -- --live` (or anything else that posts to
+  Instagram) unless the owner says yes for that run in their latest message.
+  The plain `npm run publish` is a dry run and is always fine.
 - Finish every change with `npm run validate` and report its output.
 - When a step in `roadmap.md` is finished, tick it and update "Current focus".
 

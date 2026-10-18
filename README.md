@@ -23,13 +23,13 @@ schedule to drive traffic to the Etsy shop.
 |---|---|
 | Product library, post format, validator | ✅ Ready |
 | Templates: single image, carousel, reel (Remotion) | ✅ Ready |
-| Publisher (sends posts to Instagram) | ⏳ Next — phase 3 |
+| Publisher (sends posts to Instagram) | ✅ Built — dry run only until phase 4 |
 | Meta app + Instagram token | ⏳ Phase 4 (owner does this) |
 | Scheduled publishing on GitHub Actions | ⏳ Phase 5 |
 | One-command weekly batch prompt | ⏳ Phase 6 |
 
-Until phases 3–5 land, you can build, render and review posts, but nothing is
-sent to Instagram.
+Until phases 4–5 land, you can build, render, review and dry-run posts, but
+nothing is sent to Instagram. Progress is tracked in `roadmap.md`.
 
 ---
 
@@ -259,6 +259,15 @@ Open the pull request on GitHub, look through it once more, and merge.
 **6. Publishing** — after phase 5, GitHub Actions posts each approved post at its
 `scheduledAt` time and moves it to `published/`. Nothing else to do.
 
+To preview what the next run would send, without sending anything:
+
+```bash
+npm run publish -- --now 2026-11-03T19:00:00+01:00
+```
+
+The posts' media must already be merged to `main` — Instagram downloads it
+from the public repo.
+
 ---
 
 ## 5. Anatomy of a post
@@ -280,7 +289,7 @@ queue/2026-11-02-dino-carousel/
   "listingId": "1234567890",
   "scheduledAt": "2026-11-02T18:00:00+01:00",
   "approved": true,
-  "media": { "type": "carousel", "files": ["media/01.png", "media/02.png"] },
+  "media": { "type": "carousel", "files": ["media/01.jpg", "media/02.jpg"] },
   "caption": "Which page would they color first? 🦕\n\nLink in bio",
   "hashtags": ["#coloringpages", "#kidsactivities"],
   "altText": "Pages from a dinosaur coloring book."
@@ -380,8 +389,12 @@ Text that's too long is rejected so it can't break the layout.
 | `npm run render` | Renders every post in `queue/` that has a `render.json` |
 | `npm run render -- --post <folder>` | Renders one post |
 | `npm run validate` | Checks books and posts; must end with `✓ valid` |
+| `npm run publish` | **Dry run**: shows what would be sent to Instagram right now. Add `--now <date>` to preview a later run |
+| `npm run publish -- --live` | Really publishes due posts (needs `.env`; phase 4+) |
+| `npm test` | Runs the automated tests |
+| `npm run ig:whoami` | Checks the Instagram token in `.env` and prints your account ID (phase 4) |
 | `npm run studio` | Opens the templates in a browser to preview and tweak (run a render first so images are staged) |
-| `npm run render:examples` / `validate:examples` | Same, on the sample data in `examples/` |
+| `npm run render:examples` / `validate:examples` / `publish:examples` | Same, on the sample data in `examples/` |
 | `npm run typecheck` | Checks the code compiles |
 
 ---

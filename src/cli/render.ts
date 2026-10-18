@@ -92,7 +92,8 @@ async function renderJob(serveUrl: string, job: Job): Promise<Record<string, unk
 
   const still = async (id: string, inputProps: Record<string, unknown>, file: string, frame = 0) => {
     const composition = await selectComposition({ serveUrl, id, inputProps });
-    await renderStill({ serveUrl, composition, inputProps, frame, output: join(mediaDir, file), imageFormat: 'png' });
+    // Instagram's publishing API accepts JPEG only
+    await renderStill({ serveUrl, composition, inputProps, frame, output: join(mediaDir, file), imageFormat: 'jpeg', jpegQuality: 92 });
     return `media/${file}`;
   };
 
@@ -100,12 +101,12 @@ async function renderJob(serveUrl: string, job: Job): Promise<Record<string, unk
   switch (spec.template) {
     case 'spotlight': {
       const { template: _, ...props } = spec;
-      return { type: 'image', file: await still('Spotlight', { ...props, productDir }, '01.png') };
+      return { type: 'image', file: await still('Spotlight', { ...props, productDir }, '01.jpg') };
     }
     case 'carousel': {
       const files: string[] = [];
       for (const [index, slide] of spec.slides.entries()) {
-        const name = `${String(index + 1).padStart(2, '0')}.png`;
+        const name = `${String(index + 1).padStart(2, '0')}.jpg`;
         files.push(await still('CarouselSlide', { productDir, slide, index, total: spec.slides.length }, name));
       }
       return { type: 'carousel', files };
@@ -129,7 +130,7 @@ async function renderJob(serveUrl: string, job: Job): Promise<Record<string, unk
       });
       process.stdout.write('\n');
       // Cover = end of the hook scene, once every word has landed
-      const cover = await still('PageFlipReel', props, 'cover.png', REEL_TIMING.hook - 12);
+      const cover = await still('PageFlipReel', props, 'cover.jpg', REEL_TIMING.hook - 12);
       return { type: 'reel', video: 'media/reel.mp4', cover, shareToFeed: true };
     }
   }

@@ -1,6 +1,6 @@
 import { AbsoluteFill } from 'remotion';
 import type { SpotlightProps } from '../../render/spec';
-import { Backdrop, CtaPill, Handle, Headline, PaperCard, Pill, Subline, productSrc } from '../components';
+import { Backdrop, CtaPill, FitCard, Handle, Headline, Pill, Subline, productSrc } from '../components';
 import { bg } from '../theme';
 
 /** Single image post: one product mockup with headline, badges and CTA */
@@ -11,9 +11,7 @@ export const Spotlight: React.FC<SpotlightProps> = ({ productDir, background, ey
       <Headline size={84}>{headline}</Headline>
       {subline && <Subline size={36}>{subline}</Subline>}
 
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 0 }}>
-        <PaperCard src={productSrc(productDir, mockup)} width={badges.length ? 470 : 520} rotate={-3} />
-      </div>
+      <FitCard src={productSrc(productDir, mockup)} maxWidth={560} rotate={-3} />
 
       {badges.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 14 }}>

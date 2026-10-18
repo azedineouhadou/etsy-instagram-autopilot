@@ -7,7 +7,7 @@ it in the PR and merge.
 queue/<YYYY-MM-DD>-<slug>/
   post.json     type, listing ID, schedule, caption, approval flag
   render.json   template + on-image text and which product images to use
-  media/        rendered PNG(s) or MP4 — output of npm run render, don't edit
+  media/        rendered JPEG(s) or MP4 — output of npm run render, don't edit
 ```
 
 Templates (`render.json` → `template`):
@@ -24,6 +24,7 @@ See `examples/queue/` for one of each.
 
 - Only posts with `"approved": true` publish. Set it to `false` in the PR to hold one back.
 - `scheduledAt` needs an explicit offset, e.g. `2026-11-02T18:00:00+01:00`.
-- After publishing, the post moves to `published/`.
+- After publishing, the post moves to `published/` and gets an `instagram` block
+  (media ID, link, time) — written by the publisher, never by hand.
 
 Run `npm run validate` before opening the PR. See `examples/queue/` for samples.

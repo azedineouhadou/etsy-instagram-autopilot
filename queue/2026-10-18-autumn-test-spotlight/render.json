@@ -1,0 +1,10 @@
+{
+  "template": "spotlight",
+  "background": "peach",
+  "eyebrow": "New in the shop",
+  "headline": "Cozy autumn evenings, sorted",
+  "subline": "65 fall scenes + 25 learn-to-color-by-number pages",
+  "mockup": "mockups/1.png",
+  "badges": ["Instant download", "US Letter", "For grown-ups"],
+  "cta": "Link in bio"
+}

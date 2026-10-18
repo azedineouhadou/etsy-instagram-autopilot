@@ -1,5 +1,5 @@
-import type { CSSProperties, ReactNode } from 'react';
-import { AbsoluteFill, Img, random, staticFile, useCurrentFrame } from 'remotion';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { AbsoluteFill, continueRender, delayRender, Img, random, staticFile, useCurrentFrame } from 'remotion';
 import { theme } from './theme';
 
 const { colors, fonts } = theme;
@@ -119,6 +119,66 @@ export const PaperCard: React.FC<{ src: string; width: number; rotate?: number; 
     )}
   </div>
 );
+
+const CARD_PADDING = 32;
+// Room for the tape above the card and the extra height a few degrees of rotation adds
+const TAPE_ROOM = 30;
+const ROTATION_SLACK = 0.94;
+
+/**
+ * A PaperCard that fills the free space it's given (flex: 1) without overflowing it.
+ * Real mockups come in any shape, and headlines wrap to 1–2 lines, so the size can't be fixed:
+ * it measures its box and the image's natural size, holding the frame until both are known.
+ */
+export const FitCard: React.FC<{ src: string; maxWidth: number; rotate?: number; tape?: boolean }> = ({
+  src,
+  maxWidth,
+  rotate = 0,
+  tape = true,
+}) => {
+  const box = useRef<HTMLDivElement>(null);
+  const [handle] = useState(() => delayRender(`fit ${src}`));
+  const [space, setSpace] = useState<{ w: number; h: number } | null>(null);
+  const [aspect, setAspect] = useState<number | null>(null);
+
+  // The first layout pass can report 0×0 before the composition is sized, so keep watching until it's real
+  useLayoutEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const measure = () => {
+      if (el.clientWidth > 0 && el.clientHeight > 0) setSpace({ w: el.clientWidth, h: el.clientHeight });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setAspect(img.naturalWidth / img.naturalHeight);
+    // Fall back to a portrait page shape; <Img> inside the card reports the real load error
+    img.onerror = () => setAspect(0.77);
+    img.src = src;
+  }, [src]);
+
+  useEffect(() => {
+    if (space && aspect) continueRender(handle);
+  }, [space, aspect, handle]);
+
+  const imgWidth =
+    space && aspect
+      ? Math.min(maxWidth, space.w) - CARD_PADDING > ((space.h - TAPE_ROOM) * ROTATION_SLACK - CARD_PADDING) * aspect
+        ? ((space.h - TAPE_ROOM) * ROTATION_SLACK - CARD_PADDING) * aspect
+        : Math.min(maxWidth, space.w) - CARD_PADDING
+      : 0;
+
+  return (
+    <div ref={box} style={{ flex: 1, minHeight: 0, alignSelf: 'stretch', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: tape ? TAPE_ROOM / 2 : 0 }}>
+      {imgWidth > 0 && <PaperCard src={src} width={imgWidth + CARD_PADDING} rotate={rotate} tape={tape} />}
+    </div>
+  );
+};
 
 export const Headline: React.FC<{ size: number; children: ReactNode; style?: CSSProperties }> = ({ size, children, style }) => (
   <div
