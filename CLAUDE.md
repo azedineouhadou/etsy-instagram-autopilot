@@ -47,7 +47,9 @@ the full layout; this file holds the procedures Claude runs.
 
 (Becomes a single command in phase 6.) Use `ig-plan`, `ig-reel`, `ig-caption`,
 `ig-carousel` and `ig-human`. Per post create `queue/<YYYY-MM-DD>-<slug>/`
-with `post.json` and `render.json` (formats in `README.md` §5), then
+with `post.json` and `render.json` (formats in `README.md` §5). Schedule posts
+in the windows in `brand/schedule.json` (US Eastern), using the Eastern offset
+for that date (`-04:00` or `-05:00` — check, US daylight saving changes), then
 `npm run render` and `npm run validate`. Respect the rotation and carousel
 warnings unless the owner says otherwise. Set `approved: true` only on posts
 the owner hasn't asked to hold.

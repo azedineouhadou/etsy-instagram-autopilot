@@ -23,7 +23,8 @@ Templates (`render.json` → `template`):
 See `examples/queue/` for one of each.
 
 - Only posts with `"approved": true` publish. Set it to `false` in the PR to hold one back.
-- `scheduledAt` needs an explicit offset, e.g. `2026-11-02T18:00:00+01:00`.
+- `scheduledAt` needs an explicit offset. We post on US Eastern time (`brand/schedule.json`):
+  `-04:00` until 1 Nov 2026, `-05:00` after — e.g. `2026-11-02T18:00:00-05:00`.
 - After publishing, the post moves to `published/` and gets an `instagram` block
   (media ID, link, time) — written by the publisher, never by hand.
 

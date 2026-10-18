@@ -3,7 +3,7 @@
 Tick a box (`- [x]`) when a step is done. Claude ticks its own steps when it
 finishes them; the owner ticks theirs. **Owner** = you, **Claude** = Claude Code.
 
-Current focus: **Phase 5 — owner adds secrets and tests the workflows (docs/phase-5-automation.md)**
+Current focus: **Phase 5 — owner test-runs both workflows from the Actions tab, then one unattended post**
 
 ---
 
@@ -76,7 +76,7 @@ Step-by-step guide: [`docs/phase-4-meta-setup.md`](docs/phase-4-meta-setup.md)
 
 Step-by-step guide: [`docs/phase-5-automation.md`](docs/phase-5-automation.md)
 
-- [ ] Add repo secrets (Instagram keys, `GH_SECRETS_TOKEN`) in GitHub settings — Owner
+- [x] Add repo secrets (Instagram keys, `GH_SECRETS_TOKEN`) in GitHub settings — Owner
 - [x] Publish workflow on a cron — Claude
 - [x] Token refresh workflow (weekly, keeps the 60-day token fresh) — Claude
 - [ ] Turn on GitHub email for failed workflows (guide step 3) — Owner

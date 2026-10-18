@@ -1,0 +1,10 @@
+{
+  "template": "spotlight",
+  "background": "butter",
+  "eyebrow": "Cozy season",
+  "headline": "Your armchair is calling",
+  "subline": "65 fall scenes in clean line art, ready to print",
+  "mockup": "mockups/3.png",
+  "badges": ["Ordinary paper", "US Letter", "Instant download"],
+  "cta": "Link in bio"
+}

@@ -1,0 +1,42 @@
+{
+  "timezone": "America/New_York",
+  "notes": [
+    "Best posting windows for a US audience (owner's research, Oct 2026), in US Eastern time.",
+    "6 pm Eastern is 3 pm Pacific, so evening Eastern slots also land in the afternoon on the West Coast.",
+    "scheduledAt must carry the Eastern offset for that date: -04:00 until 1 Nov 2026, -05:00 from 1 Nov until 8 Mar 2027 (US daylight saving).",
+    "The publisher runs hourly at :17, so a post scheduled for 18:00 goes out around 18:17."
+  ],
+  "days": {
+    "monday": {
+      "windows": ["14:00-16:00", "18:00-20:00"],
+      "preferred": ["18:00"]
+    },
+    "tuesday": {
+      "windows": ["13:00-19:00"],
+      "preferred": ["15:00", "19:00"]
+    },
+    "wednesday": {
+      "windows": ["12:00-21:00"],
+      "preferred": ["12:00", "18:00"],
+      "bestDay": true
+    },
+    "thursday": {
+      "windows": ["07:00-09:00", "12:00-14:00"],
+      "preferred": ["12:00"]
+    },
+    "friday": {
+      "windows": ["10:00-13:00", "16:00-18:00"],
+      "preferred": ["11:00"],
+      "lowEngagement": true
+    },
+    "saturday": {
+      "windows": ["11:00-13:00", "21:00-21:30"],
+      "preferred": ["12:00"],
+      "lowEngagement": true
+    },
+    "sunday": {
+      "windows": ["12:00-14:00", "19:00-22:00"],
+      "preferred": ["19:00"]
+    }
+  }
+}
