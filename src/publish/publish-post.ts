@@ -1,5 +1,5 @@
 import { fullCaption, type Post } from '../schemas/post.js';
-import type { InstagramApi } from './instagram.js';
+import { InstagramApiError, type ContainerStatus, type InstagramApi } from './instagram.js';
 
 export type InstagramState = NonNullable<Post['instagram']>;
 
@@ -93,7 +93,16 @@ export async function waitUntilFinished(api: InstagramApi, containerId: string, 
   const deadline = deps.now().getTime() + timeoutMs;
 
   for (;;) {
-    const { status, detail } = await api.containerStatus(containerId);
+    let status: ContainerStatus;
+    let detail: string | undefined;
+    try {
+      ({ status, detail } = await api.containerStatus(containerId));
+    } catch (err) {
+      // A dropped connection while polling says nothing about the container; keep polling until the deadline
+      if (!(err instanceof InstagramApiError) || err.status !== 0) throw err;
+      status = 'IN_PROGRESS';
+      detail = err.message;
+    }
     if (status === 'FINISHED') return;
     if (status === 'ERROR' || status === 'EXPIRED') {
       throw new Error(`container ${containerId} ${status}${detail ? `: ${detail}` : ''}`);

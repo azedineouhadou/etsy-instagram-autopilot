@@ -3,7 +3,7 @@
 Tick a box (`- [x]`) when a step is done. Claude ticks its own steps when it
 finishes them; the owner ticks theirs. **Owner** = you, **Claude** = Claude Code.
 
-Current focus: **Phase 4 — carousel and reel test posts** (single image ✅ live 2026-10-18)
+Current focus: **Owner checks the reel on a phone → Phase 5 (GitHub Actions automation)**
 
 ---
 
@@ -15,7 +15,7 @@ Current focus: **Phase 4 — carousel and reel test posts** (single image ✅ li
 - [x] Link `~/.claude/instagram/voice.md` to `brand/voice.md` — Claude
 - [x] Push phases 1–2 (`setup/foundation-and-templates` branch → PR → merge) — Owner
 - [x] Approve the brand look in `brand/brand.json` (colours, fonts, pink tape, dark CTA button), add logo if any — Owner
-- [ ] Decide on music for reels: royalty-free source, or silent for now — Owner
+- [x] Decide on music for reels: silent for now; owner will record generic voiceovers per niche — Owner
 - [ ] Decide whether to keep the rendered example media in the repo (~3.6 MB) — Owner
 - [ ] Decide on the extra "What you get" carousel slide — Owner
 
@@ -69,7 +69,7 @@ Step-by-step guide: [`docs/phase-4-meta-setup.md`](docs/phase-4-meta-setup.md)
 - [x] Set the bio link to the Etsy shop — Owner
 - [x] First real test post: one single image, published manually from the script — Owner says go, Claude runs
 - [x] Confirm: Instagram accepts the GitHub media URLs — Claude
-- [ ] Test a carousel and a reel; confirm a reel without audio is accepted — Claude
+- [x] Test a carousel and a reel; confirm a reel without audio is accepted — Claude
 - [ ] Check on a phone that reel text clears Instagram's bottom overlay — Owner
 
 ## Phase 5 — Automation (GitHub Actions)
@@ -92,3 +92,4 @@ Step-by-step guide: [`docs/phase-4-meta-setup.md`](docs/phase-4-meta-setup.md)
 - [ ] Check Etsy Stats for Instagram traffic; test UTM links — Owner
 - [ ] More templates (seasonal, "what you get" slide, before/after coloring) — Claude
 - [ ] Optimize the profile with `ig-profile` — Owner + Claude
+- [ ] Voiceovers for reels: owner records generic tracks per niche; Claude adds a `voiceover` option to the reel template and picks by product theme — Owner + Claude
