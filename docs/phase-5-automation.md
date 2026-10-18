@@ -75,6 +75,14 @@ your `.env`; nothing gets pasted anywhere else):
 
 ---
 
+## Troubleshooting
+
+| Run fails with | Fix |
+|---|---|
+| `failed to fetch public key: HTTP 403: Resource not accessible by personal access token` (refresh job, "Store it…" step) | `GH_SECRETS_TOKEN` lacks access: edit the token → repository `etsy-instagram-autopilot` selected → **Secrets: Read and write** (not "Actions", "Environments" or "Dependabot secrets"). Then re-run |
+| `missing INSTAGRAM_USER_ID, INSTAGRAM_ACCESS_TOKEN` (publish job) | Secrets were added as **Environment** secrets — move them to **Repository secrets** |
+| 403 at "Save results to the repo" | Settings → Actions → General → Workflow permissions → **Read and write** |
+
 ## Good to know
 
 - **Timing:** GitHub's scheduler can run late, sometimes by 10–30 minutes at
