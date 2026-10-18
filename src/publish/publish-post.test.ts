@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import type { Post } from '../schemas/post.js';
-import type { ContainerStatus, InstagramApi } from './instagram.js';
+import { InstagramApiError, type ContainerStatus, type InstagramApi } from './instagram.js';
 import { publishPost, selectDue, type InstagramState, type PublishDeps } from './publish-post.js';
 
 const NOW = new Date('2026-11-10T12:00:00Z');
@@ -177,5 +177,32 @@ describe('publishPost — never posts twice', () => {
     const api = new FakeApi({ 'c-old': ['EXPIRED'] });
     await publishPost(post({ instagram: { containerId: 'c-old' } }), deps(api));
     assert.deepEqual(api.calls, ['status c-old EXPIRED', 'image https://cdn.test/media/01.jpg "Hello\n\n#coloring"', 'status c-1 FINISHED', 'publish c-1']);
+  });
+});
+
+describe('publishPost — flaky network', () => {
+  it('keeps polling through a dropped connection, then publishes', async () => {
+    const api = new FakeApi({ 'c-1': ['IN_PROGRESS', 'FINISHED'] });
+    const real = api.containerStatus.bind(api);
+    let failed = false;
+    api.containerStatus = async (id: string) => {
+      if (!failed) {
+        failed = true;
+        throw new InstagramApiError('GET /c-1: network error (TypeError)', 0);
+      }
+      return real(id);
+    };
+    const result = await publishPost(post(), deps(api));
+    assert.equal(result.mediaId, 'media-99');
+    assert.ok(api.calls.includes('publish c-1'));
+  });
+
+  it('still fails fast on a real API error while polling', async () => {
+    const api = new FakeApi();
+    api.containerStatus = async () => {
+      throw new InstagramApiError('GET /c-1: Invalid parameter', 400, 100);
+    };
+    await assert.rejects(publishPost(post(), deps(api)), /Invalid parameter/);
+    assert.ok(!api.calls.some((c) => c.startsWith('publish')));
   });
 });
