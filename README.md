@@ -23,13 +23,14 @@ schedule to drive traffic to the Etsy shop.
 |---|---|
 | Product library, post format, validator | ✅ Ready |
 | Templates: single image, carousel, reel (Remotion) | ✅ Ready |
-| Publisher (sends posts to Instagram) | ✅ Built — dry run only until phase 4 |
-| Meta app + Instagram token | ⏳ Phase 4 (owner does this) |
-| Scheduled publishing on GitHub Actions | ⏳ Phase 5 |
+| Publisher (sends posts to Instagram) | ✅ Built and tested live |
+| Meta app + Instagram token | ✅ Done — single image, carousel and reel tested live |
+| Scheduled publishing on GitHub Actions | ✅ Built — active once the secrets in `docs/phase-5-automation.md` are added |
 | One-command weekly batch prompt | ⏳ Phase 6 |
 
-Until phases 4–5 land, you can build, render, review and dry-run posts, but
-nothing is sent to Instagram. Progress is tracked in `roadmap.md`.
+Once the phase 5 secrets are in place, merging approved posts into `main` is
+all it takes — GitHub publishes them on schedule. Progress is tracked in
+`roadmap.md`.
 
 ---
 
@@ -256,8 +257,10 @@ git push -u origin posts/2026-11-week-1
 
 Open the pull request on GitHub, look through it once more, and merge.
 
-**6. Publishing** — after phase 5, GitHub Actions posts each approved post at its
-`scheduledAt` time and moves it to `published/`. Nothing else to do.
+**6. Publishing** — GitHub Actions checks every hour, posts each approved post
+after its `scheduledAt` time, moves it to `published/` and commits that to
+`main` (pull before your next branch). Nothing else to do. Setup:
+[`docs/phase-5-automation.md`](docs/phase-5-automation.md).
 
 To preview what the next run would send, without sending anything:
 
@@ -393,6 +396,7 @@ Text that's too long is rejected so it can't break the layout.
 | `npm run publish -- --live` | Really publishes due posts (needs `.env`; phase 4+) |
 | `npm test` | Runs the automated tests |
 | `npm run ig:whoami` | Checks the Instagram token in `.env` and prints your account ID (phase 4) |
+| `npm run ig:refresh-token -- --out <file>` | Used by the weekly GitHub job to renew the token |
 | `npm run studio` | Opens the templates in a browser to preview and tweak (run a render first so images are staged) |
 | `npm run render:examples` / `validate:examples` / `publish:examples` | Same, on the sample data in `examples/` |
 | `npm run typecheck` | Checks the code compiles |

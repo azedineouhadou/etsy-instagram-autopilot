@@ -18,6 +18,7 @@
     "publish": "tsx src/cli/publish.ts",
     "publish:examples": "tsx src/cli/publish.ts --root examples",
     "ig:whoami": "tsx src/cli/whoami.ts",
+    "ig:refresh-token": "tsx src/cli/refresh-token.ts",
     "studio": "remotion studio src/video/index.ts --public-dir=.cache/render-public"
   },
   "dependencies": {

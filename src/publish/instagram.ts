@@ -89,6 +89,17 @@ export class InstagramClient implements InstagramApi {
     return { userId: String(res.user_id ?? ''), username: String(res.username ?? ''), accountType: String(res.account_type ?? '') };
   }
 
+  /**
+   * Swaps a long-lived token (≥24 h old, not expired) for a fresh 60-day one.
+   * This endpoint is unversioned, unlike the rest of the API.
+   */
+  async refreshToken(): Promise<{ accessToken: string; expiresInSeconds: number }> {
+    const query = this.encode({ grant_type: 'ig_refresh_token', access_token: this.opts.accessToken });
+    const res = await this.send('/refresh_access_token', `https://graph.instagram.com/refresh_access_token?${query}`, { method: 'GET' });
+    if (typeof res.access_token !== 'string') throw new InstagramApiError('refresh response had no access_token', 200);
+    return { accessToken: res.access_token, expiresInSeconds: Number(res.expires_in ?? 0) };
+  }
+
   async quota() {
     const res = await this.get(`/${this.opts.userId}/content_publishing_limit`, { fields: 'quota_usage,config' });
     const row = (res.data as { quota_usage?: number; config?: { quota_total?: number } }[] | undefined)?.[0];
