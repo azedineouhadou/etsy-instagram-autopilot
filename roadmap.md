@@ -3,7 +3,7 @@
 Tick a box (`- [x]`) when a step is done. Claude ticks its own steps when it
 finishes them; the owner ticks theirs. **Owner** = you, **Claude** = Claude Code.
 
-Current focus: **Phase 4 — first real test post (single image), then carousel and reel**
+Current focus: **Phase 4 — carousel and reel test posts** (single image ✅ live 2026-10-18)
 
 ---
 
@@ -66,9 +66,9 @@ Step-by-step guide: [`docs/phase-4-meta-setup.md`](docs/phase-4-meta-setup.md)
 - [x] Instagram account is Professional (Business or Creator) — Owner
 - [x] Meta developer account + app with "API setup with Instagram login" — Owner
 - [x] Generate a long-lived token; fill `.env` (never share it in chat) — Owner, Claude guides
-- [ ] Set the bio link to the Etsy shop — Owner
-- [ ] First real test post: one single image, published manually from the script — Owner says go, Claude runs
-- [ ] Confirm: Instagram accepts the GitHub media URLs — Claude
+- [x] Set the bio link to the Etsy shop — Owner
+- [x] First real test post: one single image, published manually from the script — Owner says go, Claude runs
+- [x] Confirm: Instagram accepts the GitHub media URLs — Claude
 - [ ] Test a carousel and a reel; confirm a reel without audio is accepted — Claude
 - [ ] Check on a phone that reel text clears Instagram's bottom overlay — Owner
 
