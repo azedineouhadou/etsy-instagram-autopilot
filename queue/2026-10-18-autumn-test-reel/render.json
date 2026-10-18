@@ -1,0 +1,11 @@
+{
+  "template": "page-flip-reel",
+  "hook": "Your fall evenings, planned.",
+  "subline": "Pour something warm. Pick a page.",
+  "pagesTitle": "A peek inside",
+  "pagesBadge": "65 fall scenes",
+  "pages": ["interior/file-01.png", "interior/file-02.png", "interior/file-05.png", "interior/file-06.png", "interior/file-03.png"],
+  "mockup": "mockups/1.png",
+  "points": ["65 line-art fall scenes", "25 learn-to-color pages", "Instant download, US Letter"],
+  "cta": "Link in bio"
+}
