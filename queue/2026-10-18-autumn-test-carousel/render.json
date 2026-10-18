@@ -1,0 +1,11 @@
+{
+  "template": "carousel",
+  "slides": [
+    { "kind": "cover", "eyebrow": "Printable coloring book", "headline": "Which fall scene would you color first?", "subline": "Swipe, then pick 1, 2, 3 or 4", "image": "mockups/2.png" },
+    { "kind": "page", "caption": "1. Pumpkin cottage", "image": "interior/file-02.png" },
+    { "kind": "page", "caption": "2. Leafy forest path", "image": "interior/file-03.png" },
+    { "kind": "page", "caption": "3. Acorns and maple leaves", "image": "interior/file-04.png" },
+    { "kind": "page", "caption": "4. Mums on the porch", "image": "interior/file-06.png" },
+    { "kind": "cta", "headline": "Learn it. Then color all autumn.", "image": "mockups/1.png", "points": ["65 line-art fall scenes", "25 learn-to-color pages", "US Letter, instant download"], "cta": "Link in bio" }
+  ]
+}
