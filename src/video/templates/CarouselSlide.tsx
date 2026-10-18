@@ -1,6 +1,6 @@
 import { AbsoluteFill } from 'remotion';
 import type { CarouselSlideProps } from '../../render/spec';
-import { Arrow, Backdrop, CheckItem, CtaPill, Handle, Headline, PaperCard, Pill, Subline, productSrc } from '../components';
+import { Arrow, Backdrop, CheckItem, CtaPill, FitCard, Handle, Headline, PaperCard, Pill, Subline, productSrc } from '../components';
 import { rotatingBg, theme } from '../theme';
 
 /** One carousel slide; the renderer calls it once per slide with its index */
@@ -15,9 +15,7 @@ export const CarouselSlide: React.FC<CarouselSlideProps> = ({ productDir, slide,
             {slide.eyebrow && <Pill size={26}>{slide.eyebrow.toUpperCase()}</Pill>}
             <Headline size={92}>{slide.headline}</Headline>
             {slide.subline && <Subline size={38}>{slide.subline}</Subline>}
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', minHeight: 0 }}>
-              <PaperCard src={src(slide.image)} width={470} rotate={-4} />
-            </div>
+            <FitCard src={src(slide.image)} maxWidth={560} rotate={-4} />
             <Pill dark size={32} style={{ alignSelf: 'flex-end' }}>
               Swipe <Arrow size={30} />
             </Pill>
@@ -27,9 +25,7 @@ export const CarouselSlide: React.FC<CarouselSlideProps> = ({ productDir, slide,
         {slide.kind === 'page' && (
           <>
             <Headline size={64}>{slide.caption}</Headline>
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', minHeight: 0 }}>
-              <PaperCard src={src(slide.image)} width={640} rotate={index % 2 ? 2 : -2} />
-            </div>
+            <FitCard src={src(slide.image)} maxWidth={720} rotate={index % 2 ? 2 : -2} />
           </>
         )}
 

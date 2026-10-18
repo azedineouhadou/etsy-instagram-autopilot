@@ -9,11 +9,15 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test \"src/**/*.test.ts\"",
     "intake": "tsx src/cli/intake.ts",
     "validate": "tsx src/cli/validate.ts",
     "validate:examples": "tsx src/cli/validate.ts --root examples",
     "render": "tsx src/cli/render.ts",
     "render:examples": "tsx src/cli/render.ts --root examples",
+    "publish": "tsx src/cli/publish.ts",
+    "publish:examples": "tsx src/cli/publish.ts --root examples",
+    "ig:whoami": "tsx src/cli/whoami.ts",
     "studio": "remotion studio src/video/index.ts --public-dir=.cache/render-public"
   },
   "dependencies": {

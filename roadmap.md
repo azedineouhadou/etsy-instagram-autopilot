@@ -3,7 +3,7 @@
 Tick a box (`- [x]`) when a step is done. Claude ticks its own steps when it
 finishes them; the owner ticks theirs. **Owner** = you, **Claude** = Claude Code.
 
-Current focus: **Phase 3 (publisher, dry run) + first real book in parallel**
+Current focus: **Phase 4 — first real test post (single image), then carousel and reel**
 
 ---
 
@@ -41,7 +41,7 @@ Current focus: **Phase 3 (publisher, dry run) + first real book in parallel**
 ## Phase 2.5 — First real book
 
 - [x] Add the first book folder (`link.txt`, `mockups/`, `interior/`) on a new branch — Owner
-- [ ] "process new books" → check `product.json` facts — Owner + Claude
+- [x] "process new books" → check `product.json` facts — Owner + Claude
 - [ ] Render one post of each template with the real book — Claude
 - [ ] Tune the templates on real artwork (sizes, crops, colours) — Claude
 - [ ] Approve the real renders — Owner
@@ -49,19 +49,23 @@ Current focus: **Phase 3 (publisher, dry run) + first real book in parallel**
 
 ## Phase 3 — Publisher (dry run, nothing sent)
 
-- [ ] Instagram API client: image, carousel and reel containers → wait for processing → publish — Claude
-- [ ] Pick due posts: `approved: true` and `scheduledAt` passed, oldest first — Claude
-- [ ] `--dry-run` mode that prints every request without sending — Claude
-- [ ] After publishing: move the post to `published/`, record publish time and Instagram media ID — Claude
-- [ ] Safety: daily publish limit check, clear errors, a failed post never blocks the others — Claude
-- [ ] Dry run on the examples shows the expected requests — Claude
+- [x] Instagram API client: image, carousel and reel containers → wait for processing → publish — Claude
+- [x] Pick due posts: `approved: true` and `scheduledAt` passed, oldest first — Claude
+- [x] Dry run by default (`--live` to really send) that prints every request — Claude
+- [x] After publishing: move the post to `published/`, record publish time and Instagram media ID — Claude
+- [x] Safety: daily publish limit check, clear errors, a failed post never blocks the others — Claude
+- [x] Dry run on the examples shows the expected requests — Claude
+- [x] Render images as JPEG (Instagram's API accepts JPEG only) — Claude
+- [x] Tests for selection, request sequences and the no-double-post safeguard (`npm test`) — Claude
 - [ ] Review the dry-run output — Owner
 
 ## Phase 4 — Meta & Instagram setup
 
-- [ ] Instagram account is Professional (Business or Creator) — Owner
-- [ ] Meta developer account + app with "API setup with Instagram login" — Owner
-- [ ] Generate a long-lived token; fill `.env` (never share it in chat) — Owner, Claude guides
+Step-by-step guide: [`docs/phase-4-meta-setup.md`](docs/phase-4-meta-setup.md)
+
+- [x] Instagram account is Professional (Business or Creator) — Owner
+- [x] Meta developer account + app with "API setup with Instagram login" — Owner
+- [x] Generate a long-lived token; fill `.env` (never share it in chat) — Owner, Claude guides
 - [ ] Set the bio link to the Etsy shop — Owner
 - [ ] First real test post: one single image, published manually from the script — Owner says go, Claude runs
 - [ ] Confirm: Instagram accepts the GitHub media URLs — Claude

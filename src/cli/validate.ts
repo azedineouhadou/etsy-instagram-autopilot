@@ -45,9 +45,9 @@ function checkPost(
   const files = mediaFiles(post);
   if (post.media.type === 'reel') {
     checkFiles(owner, dir, [post.media.video], INSTAGRAM_LIMITS.videoExtensions);
-    checkFiles(owner, dir, files.slice(1), INSTAGRAM_LIMITS.imageExtensions);
+    checkFiles(owner, dir, files.slice(1), INSTAGRAM_LIMITS.publishImageExtensions);
   } else {
-    checkFiles(owner, dir, files, INSTAGRAM_LIMITS.imageExtensions);
+    checkFiles(owner, dir, files, INSTAGRAM_LIMITS.publishImageExtensions);
   }
 
   if (post.media.type === 'carousel' && post.media.files.length < CONTENT_RULES.carouselRecommendedMinSlides) {

@@ -36,7 +36,16 @@ export const postSchema = z
       .array(z.string().regex(/^#[\p{L}\p{N}_]+$/u, 'hashtag must start with # and contain no spaces'))
       .max(INSTAGRAM_LIMITS.hashtagsMax)
       .default([]),
-    altText: z.string().optional(),
+    altText: z.string().max(1000).optional(),
+    // Written by the publisher, never by hand: lets a re-run finish a post instead of publishing it twice
+    instagram: z
+      .object({
+        containerId: z.string().optional(),
+        mediaId: z.string().optional(),
+        permalink: z.url().optional(),
+        publishedAt: z.iso.datetime({ offset: true }).optional(),
+      })
+      .optional(),
   })
   .refine((p) => fullCaption(p).length <= INSTAGRAM_LIMITS.captionMaxChars, {
     message: `caption + hashtags exceed ${INSTAGRAM_LIMITS.captionMaxChars} characters`,
