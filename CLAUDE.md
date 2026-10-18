@@ -14,6 +14,9 @@ the full layout; this file holds the procedures Claude runs.
 - Never run `npm run publish -- --live` (or anything else that posts to
   Instagram) unless the owner says yes for that run in their latest message.
   The plain `npm run publish` is a dry run and is always fine.
+- Since phase 5, GitHub Actions publishes approved posts in `main` on its own:
+  the owner merging a post is the go-ahead. Never merge, never trigger the
+  workflows, never set `approved: true` on a post the owner asked to hold.
 - Finish every change with `npm run validate` and report its output.
 - When a step in `roadmap.md` is finished, tick it and update "Current focus".
 

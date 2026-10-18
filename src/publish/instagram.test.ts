@@ -109,3 +109,17 @@ describe('InstagramClient config', () => {
     );
   });
 });
+
+describe('InstagramClient.refreshToken', () => {
+  it('calls the unversioned refresh endpoint and returns the new token', async () => {
+    const seen: Seen[] = [];
+    const res = await client(() => ({ json: { access_token: 'new-token', token_type: 'bearer', expires_in: 5_184_000 } }), seen).refreshToken();
+    assert.ok(seen[0]?.url.startsWith('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&'));
+    assert.deepEqual(res, { accessToken: 'new-token', expiresInSeconds: 5_184_000 });
+  });
+
+  it('errors on a refresh failure without echoing the token', async () => {
+    const api = client(() => ({ status: 400, json: { error: { message: 'Session has expired', code: 190 } } }));
+    await assert.rejects(api.refreshToken(), (err: Error) => err.message === 'GET /refresh_access_token: Session has expired' && !err.message.includes(TOKEN));
+  });
+});

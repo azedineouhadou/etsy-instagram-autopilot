@@ -3,7 +3,7 @@
 Tick a box (`- [x]`) when a step is done. Claude ticks its own steps when it
 finishes them; the owner ticks theirs. **Owner** = you, **Claude** = Claude Code.
 
-Current focus: **Owner checks the reel on a phone → Phase 5 (GitHub Actions automation)**
+Current focus: **Phase 5 — owner adds secrets and tests the workflows (docs/phase-5-automation.md)**
 
 ---
 
@@ -70,14 +70,16 @@ Step-by-step guide: [`docs/phase-4-meta-setup.md`](docs/phase-4-meta-setup.md)
 - [x] First real test post: one single image, published manually from the script — Owner says go, Claude runs
 - [x] Confirm: Instagram accepts the GitHub media URLs — Claude
 - [x] Test a carousel and a reel; confirm a reel without audio is accepted — Claude
-- [ ] Check on a phone that reel text clears Instagram's bottom overlay — Owner
+- [x] Check on a phone that reel text clears Instagram's bottom overlay — Owner
 
 ## Phase 5 — Automation (GitHub Actions)
 
+Step-by-step guide: [`docs/phase-5-automation.md`](docs/phase-5-automation.md)
+
 - [ ] Add repo secrets (Instagram keys, `GH_SECRETS_TOKEN`) in GitHub settings — Owner
-- [ ] Publish workflow on a cron — Claude
-- [ ] Token refresh workflow (~every 50 days) — Claude
-- [ ] Failure notification (GitHub email on failed run) — Claude
+- [x] Publish workflow on a cron — Claude
+- [x] Token refresh workflow (weekly, keeps the 60-day token fresh) — Claude
+- [ ] Turn on GitHub email for failed workflows (guide step 3) — Owner
 - [ ] One scheduled post goes out with nobody at the keyboard — Owner + Claude
 
 ## Phase 6 — Weekly routine

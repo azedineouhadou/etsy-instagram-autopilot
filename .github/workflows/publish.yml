@@ -1,0 +1,66 @@
+name: Publish due posts
+
+on:
+  schedule:
+    # Hourly at :17 — the top of the hour is when GitHub's scheduler is busiest and delays runs
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'dry-run only prints what would be sent; live really publishes'
+        type: choice
+        options: [dry-run, live]
+        default: dry-run
+
+permissions:
+  contents: write
+
+# Two overlapping runs could both publish a post before either records it
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Publish
+        env:
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION || 'v25.0' }}
+          LIVE: ${{ github.event_name == 'schedule' || inputs.mode == 'live' }}
+        run: |
+          if [ "$LIVE" = "true" ]; then
+            npm run publish -- --live
+          else
+            npm run publish
+          fi
+
+      # Runs even when a post failed: publish progress written to post.json is what prevents double posts
+      - name: Save results to the repo
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add queue published
+          if git diff --cached --quiet; then
+            echo "Nothing published, nothing to save"
+            exit 0
+          fi
+          git commit -m "publish: record results of run ${{ github.run_id }}"
+          for attempt in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 5
+          done
+          exit 1
