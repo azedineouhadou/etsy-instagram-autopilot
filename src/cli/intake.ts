@@ -3,12 +3,14 @@ import { extname, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { parseEtsyLink, slugify } from '../lib/etsy-link.js';
 import { PATHS } from '../lib/library.js';
+import { MAX_LONG_SIDE, shrinkBook } from '../lib/shrink.js';
 import { INSTAGRAM_LIMITS } from '../schemas/instagram-limits.js';
 
 /**
  * Prepares new books dropped into assets/products/: reads link.txt, renames the
- * folder to <listingId>-<slug> and cleans the link. Writing product.json is left
- * to Claude, which reads the live listing in Chrome.
+ * folder to <listingId>-<slug> and cleans the link, then shrinks oversized images
+ * in every book. Writing product.json is left to Claude, which reads the live
+ * listing in Chrome.
  */
 const { values } = parseArgs({ options: { root: { type: 'string', default: '.' } } });
 const base = join(values.root, PATHS.products);
@@ -58,6 +60,18 @@ for (const folder of folders) {
   if (target !== folder) renameSync(dir, join(base, target));
   writeFileSync(join(base, target, 'link.txt'), `${link.url}\n`);
   ready.push({ folder: target, url: link.url, mockups, interior });
+}
+
+// Every book, not just new ones: images replaced later get caught too, and already-small ones are skipped
+const MB = (bytes: number) => `${(bytes / 1_048_576).toFixed(1)} MB`;
+const shrunk = [];
+for (const folder of readdirSync(base, { withFileTypes: true }).filter((e) => e.isDirectory())) {
+  shrunk.push(...(await shrinkBook(join(base, folder.name))));
+}
+if (shrunk.length) {
+  const before = shrunk.reduce((sum, r) => sum + r.before, 0);
+  const after = shrunk.reduce((sum, r) => sum + r.after, 0);
+  console.log(`Shrank ${shrunk.length} image(s) to ${MAX_LONG_SIDE} px max: ${MB(before)} → ${MB(after)}\n`);
 }
 
 if (ready.length) {
