@@ -58,7 +58,9 @@ Approved shop voice for the instagram-agent skills. This is the source of truth;
 ## Off limits
 
 - **Topics I do not post about:** Trademarked characters, brands, TV game shows
-  or movie titles. Resell rights (PLR/MRR) — the feed is for people who color.
+  or movie titles. Reselling of any kind — PLR, MRR, KDP, Amazon, print-on-demand,
+  "commercial use", "sell as your own", passive income — even when the book's
+  listing includes those rights. The feed is for people who color.
 - **Clients, numbers or names I cannot say publicly:** None.
 - **Claims I am not allowed to make:** No educational, developmental or
   mental-health claims that aren't on the listing. No fake reviews or sales

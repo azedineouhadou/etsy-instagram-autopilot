@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { after, describe, it } from 'node:test';
 import sharp from 'sharp';
-import { shrinkBook, shrinkImage } from './shrink.js';
+import { convertColourPngs, shrinkBook, shrinkImage } from './shrink.js';
 
 const dir = mkdtempSync(join(tmpdir(), 'shrink-test-'));
 after(() => rmSync(dir, { recursive: true, force: true }));
@@ -78,5 +78,26 @@ describe('shrinkBook', () => {
       ['interior/01.png', 'interior/02.png'],
     );
     assert.deepEqual(await shrinkBook(book), []);
+  });
+});
+
+describe('convertColourPngs', () => {
+  it('turns colour PNGs into smaller JPGs and leaves line art as PNG', async () => {
+    const book = join(dir, '2222222-new-book');
+    mkdirSync(join(book, 'mockups'), { recursive: true });
+    mkdirSync(join(book, 'interior'), { recursive: true });
+    // A noisy colour image, like a photo, so PNG compresses badly
+    const noise = Buffer.alloc(800 * 1000 * 3).map(() => Math.floor(Math.random() * 256));
+    await sharp(noise, { raw: { width: 800, height: 1000, channels: 3 } }).png().toFile(join(book, 'mockups', '1.png'));
+    await lineArt(join(book, 'interior', '01.png'), 1200, 1500);
+
+    const converted = await convertColourPngs(book);
+    assert.deepEqual(
+      converted.map((c) => c.to.slice(book.length + 1)),
+      ['mockups/1.jpg'],
+    );
+    assert.ok(converted[0]!.after < converted[0]!.before);
+    assert.equal((await sharp(join(book, 'mockups', '1.jpg')).metadata()).format, 'jpeg');
+    assert.equal((await sharp(join(book, 'interior', '01.png')).metadata()).format, 'png');
   });
 });

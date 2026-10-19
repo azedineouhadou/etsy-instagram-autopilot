@@ -1,9 +1,9 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { extname, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { loadPosts, loadProducts, type Loaded } from '../lib/library.js';
 import { findRotationIssues } from '../lib/rotation.js';
-import { CONTENT_RULES } from '../schemas/content-rules.js';
+import { CONTENT_RULES, findBannedPhrases } from '../schemas/content-rules.js';
 import { INSTAGRAM_LIMITS } from '../schemas/instagram-limits.js';
 import { mediaFiles, type Post } from '../schemas/post.js';
 import type { Product } from '../schemas/product.js';
@@ -53,6 +53,12 @@ function checkPost(
   if (post.media.type === 'carousel' && post.media.files.length < CONTENT_RULES.carouselRecommendedMinSlides) {
     warnings.push(`${owner}: ${post.media.files.length} slides — aim for ${CONTENT_RULES.carouselRecommendedMinSlides} to ${CONTENT_RULES.carouselMaxSlides}`);
   }
+
+  // Caption, hashtags, alt text and every line of text drawn on the images
+  const renderPath = join(dir, 'render.json');
+  const onImage = existsSync(renderPath) ? readFileSync(renderPath, 'utf8') : '';
+  const banned = findBannedPhrases([post.caption, ...post.hashtags, post.altText ?? '', onImage].join('\n'));
+  if (banned.length) errors.push(`${owner}: off-limits wording ${banned.join(', ')} — see brand/voice.md`);
 
   if (Date.parse(post.scheduledAt) < now) warnings.push(`${owner}: scheduledAt is in the past, it will publish on the next run`);
   if (!post.approved) warnings.push(`${owner}: not approved, the publisher will skip it`);
