@@ -1,9 +1,9 @@
-import { existsSync, readdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { extname, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { parseEtsyLink, slugify } from '../lib/etsy-link.js';
 import { PATHS } from '../lib/library.js';
-import { MAX_LONG_SIDE, shrinkBook } from '../lib/shrink.js';
+import { convertColourPngs, MAX_LONG_SIDE, shrinkBook } from '../lib/shrink.js';
 import { INSTAGRAM_LIMITS } from '../schemas/instagram-limits.js';
 
 /**
@@ -18,8 +18,11 @@ const base = join(values.root, PATHS.products);
 const isImage = (f: string) => (INSTAGRAM_LIMITS.imageExtensions as readonly string[]).includes(extname(f).toLowerCase());
 const images = (dir: string) => (existsSync(dir) ? readdirSync(dir).filter(isImage) : []);
 
+// Gitignored, so set-aside files never get committed
+const CACHE_ASIDE = '.cache/intake-set-aside';
 const problems: string[] = [];
 const ready: { folder: string; url: string; mockups: number; interior: number }[] = [];
+const converted: { before: number; after: number }[] = [];
 
 const folders = existsSync(base)
   ? readdirSync(base, { withFileTypes: true })
@@ -28,9 +31,21 @@ const folders = existsSync(base)
       .sort()
   : [];
 
+const setAside: string[] = [];
 for (const folder of folders) {
   const dir = join(base, folder);
-  if (existsSync(join(dir, 'product.json'))) continue;
+  const productPath = join(dir, 'product.json');
+  if (existsSync(productPath)) {
+    // A folder duplicated from another book carries that book's product.json; set it aside so the book is processed
+    const linkPath = join(dir, 'link.txt');
+    const link = existsSync(linkPath) ? parseEtsyLink(readFileSync(linkPath, 'utf8')) : null;
+    const owner = (JSON.parse(readFileSync(productPath, 'utf8')) as { listingId?: string }).listingId;
+    if (!link || 'error' in link || link.listingId === owner) continue;
+    const aside = join(CACHE_ASIDE, `${folder}-product.json`);
+    mkdirSync(CACHE_ASIDE, { recursive: true });
+    renameSync(productPath, aside);
+    setAside.push(`${folder}: product.json belonged to listing ${owner} (copied from another book?) — moved to ${aside}`);
+  }
 
   const linkPath = join(dir, 'link.txt');
   if (!existsSync(linkPath)) {
@@ -59,6 +74,7 @@ for (const folder of folders) {
   }
   if (target !== folder) renameSync(dir, join(base, target));
   writeFileSync(join(base, target, 'link.txt'), `${link.url}\n`);
+  converted.push(...(await convertColourPngs(join(base, target))));
   ready.push({ folder: target, url: link.url, mockups, interior });
 }
 
@@ -67,6 +83,13 @@ const MB = (bytes: number) => `${(bytes / 1_048_576).toFixed(1)} MB`;
 const shrunk = [];
 for (const folder of readdirSync(base, { withFileTypes: true }).filter((e) => e.isDirectory())) {
   shrunk.push(...(await shrinkBook(join(base, folder.name))));
+}
+for (const note of setAside) console.log(`  note   ${note}`);
+if (setAside.length) console.log('');
+if (converted.length) {
+  const before = converted.reduce((sum, r) => sum + r.before, 0);
+  const after = converted.reduce((sum, r) => sum + r.after, 0);
+  console.log(`Converted ${converted.length} colour PNG(s) to JPG: ${MB(before)} → ${MB(after)}`);
 }
 if (shrunk.length) {
   const before = shrunk.reduce((sum, r) => sum + r.before, 0);

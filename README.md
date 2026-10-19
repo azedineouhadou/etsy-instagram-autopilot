@@ -68,13 +68,15 @@ Pull first (the publishing bot commits to `main`):
 git switch main && git pull
 ```
 
-Ask Claude, for example:
+In Claude Code, run **`/weekly-batch`** — optionally with instructions:
 
-> Plan next week's posts: 5 posts. Feature the autumn book and the dinosaur
-> book. One reel, two carousels, two images.
+> /weekly-batch 5 posts, feature the horror book twice, no reel on Friday
 
-Claude writes each post into `queue/`, picks times from the US windows in
-`brand/schedule.json`, then renders and validates. For each post folder:
+Claude plans the week (`npm run plan:week`: days, US times with the right
+daylight-saving offset, and which book goes where under the rotation rules),
+writes each post in the shop voice, renders it, checks the images, validates
+and gives you a summary table. To see just the plan: `npm run plan:week`. For
+each post folder:
 
 - open `media/` and look at every image and the reel
 - read `caption` and `hashtags` in `post.json`
@@ -122,6 +124,7 @@ queue/<YYYY-MM-DD>-<name>/
 | Command | What it does |
 |---|---|
 | `npm run intake` | Prepares new book folders and shrinks oversized images (Claude runs it for "process new books") |
+| `npm run plan:week` | Proposes next week's slots (US time, correct offset), formats and books (`-- --posts 4 --days mon,wed --week 2026-11-02`) |
 | `npm run render` | Renders every post in `queue/` (`-- --post <folder>` for one) |
 | `npm run validate` | Checks books and posts — must end with `✓ valid` |
 | `npm run publish` | **Dry run**: shows what would be posted now (`-- --now <date>` to preview later) |
@@ -152,6 +155,7 @@ variable `INSTAGRAM_API_VERSION = v25.0`.
 | `file not found: …` | Wrong image path, or render the post |
 | `scheduledAt: Invalid ISO datetime` | Add the offset, e.g. `…T18:00:00-05:00` |
 | `hashtags: Too big` | 5 hashtags max |
+| `off-limits wording "PLR" …` | Reseller words (PLR, MRR, KDP, Amazon, resell, commercial use…) and health claims (therapy, treatment, cure, guaranteed) never go on Instagram — rewrite that line |
 | `warn … featured N day(s) earlier` / `appears N times in 7 days` | Same book too often — consider another book |
 | `warn … slides — aim for 5 to 6` | Add slides to the carousel |
 | Failed run: `missing INSTAGRAM_USER_ID…` | Secrets must be **Repository** secrets, not Environment secrets |
@@ -176,8 +180,8 @@ Ask Claude to read the failed run's log — it can see GitHub Actions runs.
 ## Roadmap
 
 Tick a box when a step is done. Claude ticks its own steps.
-**Next up:** confirm the unattended post (Mon 19 Oct, 6 pm ET), then the
-one-command weekly batch.
+**Next up:** confirm the unattended post (Mon 19 Oct, 6 pm ET), add 2–3 more
+books, then run `/weekly-batch` for the first real week.
 
 ### Done
 
@@ -200,7 +204,7 @@ one-command weekly batch.
 
 ### Next: weekly routine
 
-- [ ] One command for the weekly batch: plan → write → pick US times → render → validate — Claude
+- [x] One command for the weekly batch: `/weekly-batch` (plan → write → render → check → validate) — Claude
 - [ ] Add the rest of the catalog (one folder + `link.txt` per book) — Owner
 - [ ] First real week: 4–5 posts generated, reviewed, merged — Owner + Claude
 - [ ] Adjust after the first week (timing, mix, tone) — Owner + Claude

@@ -13,6 +13,7 @@
     "intake": "tsx src/cli/intake.ts",
     "validate": "tsx src/cli/validate.ts",
     "validate:examples": "tsx src/cli/validate.ts --root examples",
+    "plan:week": "tsx src/cli/plan-week.ts",
     "render": "tsx src/cli/render.ts",
     "render:examples": "tsx src/cli/render.ts --root examples",
     "publish": "tsx src/cli/publish.ts",

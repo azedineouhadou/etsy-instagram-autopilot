@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, renameSync, statSync, unlinkSync, writeFileSync } from 'node:fs';
 import { extname, join } from 'node:path';
 import sharp, { type Sharp } from 'sharp';
 
@@ -50,6 +50,35 @@ async function isGreyscale(path: string): Promise<boolean> {
     if (Math.max(Math.abs(r - g), Math.abs(g - b), Math.abs(r - b)) > 12) return false;
   }
   return true;
+}
+
+export type ConvertResult = { from: string; to: string; before: number; after: number };
+
+/**
+ * Colour PNGs (mockup photos, colourful worksheets) are several times larger than a high-quality JPG.
+ * Only safe before product.json exists — it renames files — so intake runs it for new books only.
+ * Black-and-white line art stays PNG: crisp edges, and shrinkImage already makes it compact.
+ */
+export async function convertColourPngs(bookDir: string): Promise<ConvertResult[]> {
+  const results: ConvertResult[] = [];
+  for (const sub of ['mockups', 'interior']) {
+    const dir = join(bookDir, sub);
+    if (!existsSync(dir)) continue;
+    for (const name of readdirSync(dir).sort()) {
+      if (extname(name).toLowerCase() !== '.png') continue;
+      const from = join(dir, name);
+      const to = from.replace(/\.png$/i, '.jpg');
+      if (existsSync(to) || (await isGreyscale(from))) continue;
+
+      const before = statSync(from).size;
+      const buffer = await sharp(from).flatten({ background: '#ffffff' }).jpeg({ quality: 90, mozjpeg: true }).toBuffer();
+      if (buffer.length >= before) continue;
+      writeFileSync(to, buffer);
+      unlinkSync(from);
+      results.push({ from, to, before, after: buffer.length });
+    }
+  }
+  return results;
 }
 
 /** Shrinks every oversized image in a book's mockups/ and interior/ folders. */
