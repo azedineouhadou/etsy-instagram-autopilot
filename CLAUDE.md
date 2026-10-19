@@ -24,9 +24,9 @@ the full layout; this file holds the procedures Claude runs.
 ## Procedure: "process new books" / "add listing <link>"
 
 1. If the owner gave a link, create `assets/products/<any-name>/link.txt` with it.
-2. Run `npm run intake`. It renames each new folder to `<listingId>-<slug>`
-   and cleans `link.txt`. If it prints `fix` lines, tell the owner what to fix
-   and stop for those books.
+2. Run `npm run intake`. It renames each new folder to `<listingId>-<slug>`,
+   cleans `link.txt` and shrinks images over 1600 px in place. If it prints
+   `fix` lines, tell the owner what to fix and stop for those books.
 3. For each folder listed under "Ready", open the link in Claude in Chrome and
    read the listing: title, description, page count, sizes, age range, format.
 4. Write `product.json` in that folder (schema: `src/schemas/product.ts`,

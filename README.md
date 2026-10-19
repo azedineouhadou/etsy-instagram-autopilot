@@ -48,10 +48,14 @@ assets/products/<any name>/
 ```
 
 Images: PNG or JPG, at least 1080 px on the short side, named in order
-(`01.png`, `02.png`…), all inside `mockups/` or `interior/`.
+(`01.png`, `02.png`…), all inside `mockups/` or `interior/`. Drop in full-size
+files — intake shrinks anything over 1600 px (black-and-white pages become
+compact greyscale, ~5× smaller) so the public repo stays light. Save **mockup
+photos as JPG**: PNG photos are ~5× bigger.
 
 Then tell Claude **"process new books"**. It renames the folder to
-`<listingId>-<name>`, reads the listing in Chrome and writes `product.json`.
+`<listingId>-<name>`, shrinks oversized images, reads the listing in Chrome and
+writes `product.json`.
 **Check the facts in `product.json`** — captions only use what's written
 there. Books stay in the library and can be featured any week; delete a book
 folder only when its listing is gone.
@@ -117,7 +121,7 @@ queue/<YYYY-MM-DD>-<name>/
 
 | Command | What it does |
 |---|---|
-| `npm run intake` | Prepares new book folders (Claude runs it for "process new books") |
+| `npm run intake` | Prepares new book folders and shrinks oversized images (Claude runs it for "process new books") |
 | `npm run render` | Renders every post in `queue/` (`-- --post <folder>` for one) |
 | `npm run validate` | Checks books and posts — must end with `✓ valid` |
 | `npm run publish` | **Dry run**: shows what would be posted now (`-- --now <date>` to preview later) |
@@ -187,6 +191,7 @@ one-command weekly batch.
 - [x] Live tests: single image, 6-slide carousel and silent reel published
 - [x] GitHub Actions: hourly publishing and weekly token refresh, secrets in place
 - [x] US posting windows saved in `brand/schedule.json`
+- [x] Intake shrinks big images (autumn pages 9.5 MB → 2.0 MB, no visible loss)
 
 ### Now
 
@@ -204,7 +209,6 @@ one-command weekly batch.
 
 - [ ] Voiceovers for reels: owner records generic tracks per niche; Claude adds a voiceover option picked by the book's theme — Owner + Claude
 - [ ] "What you get" carousel slide (page count, sizes, format) and seasonal templates — Claude
-- [ ] Shrink product images on intake (full-size pages are ~14 MB per book in a public repo) — Claude
 - [ ] Decide whether to keep the rendered example media (~3.6 MB) — Owner
 - [ ] Monthly `ig-audit` on Instagram insights: what to make more of — Owner + Claude
 - [ ] Check Etsy Stats for Instagram traffic; test UTM links — Owner
