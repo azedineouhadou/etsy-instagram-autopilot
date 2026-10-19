@@ -1,0 +1,43 @@
+{
+  "template": "carousel",
+  "slides": [
+    {
+      "kind": "cover",
+      "eyebrow": "Printable activity book",
+      "headline": "Screen-free quiet time, four ways",
+      "subline": "Swipe through 4 of the 37 activity pages",
+      "image": "mockups/1.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "1. Find and circle the hidden objects",
+      "image": "interior/3.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "2. Spot the difference: can they find all 7?",
+      "image": "interior/4.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "3. Help the dinosaur reach the treasure",
+      "image": "interior/6.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "4. Help the bunny find the carrot",
+      "image": "interior/7.jpg"
+    },
+    {
+      "kind": "cta",
+      "headline": "37 pages. Print them again and again.",
+      "image": "interior/8.jpg",
+      "points": [
+        "Mazes, spot the difference, tracing and more",
+        "For home, class or homeschool",
+        "6 x 9 in pages, instant download"
+      ],
+      "cta": "Link in bio"
+    }
+  ]
+}

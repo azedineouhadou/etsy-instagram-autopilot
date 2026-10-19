@@ -1,0 +1,21 @@
+{
+  "template": "page-flip-reel",
+  "hook": "\"I can't pick colors.\" Start with the numbers.",
+  "subline": "10 color-by-number pages to learn on, then 65 fall scenes",
+  "pagesTitle": "Then color these",
+  "pagesBadge": "65 fall scenes",
+  "pages": [
+    "interior/file-07.png",
+    "interior/file-08.png",
+    "interior/file-09.png",
+    "interior/file-10.png",
+    "interior/file-04.png"
+  ],
+  "mockup": "mockups/2.png",
+  "points": [
+    "10 learn-first pages for adults",
+    "65 line-art fall scenes",
+    "US Letter, instant download"
+  ],
+  "cta": "Link in bio"
+}
