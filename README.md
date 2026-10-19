@@ -180,8 +180,8 @@ Ask Claude to read the failed run's log — it can see GitHub Actions runs.
 ## Roadmap
 
 Tick a box when a step is done. Claude ticks its own steps.
-**Next up:** confirm the unattended post (Mon 19 Oct, 6 pm ET), add 2–3 more
-books, then run `/weekly-batch` for the first real week.
+**Next up:** review and merge the first real week (5 posts, 26 Oct – 1 Nov,
+branch `posts/2026-10-26`), and confirm the unattended post (Mon 19 Oct, 6 pm ET).
 
 ### Done
 

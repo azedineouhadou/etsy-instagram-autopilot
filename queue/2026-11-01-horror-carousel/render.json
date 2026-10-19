@@ -1,0 +1,43 @@
+{
+  "template": "carousel",
+  "slides": [
+    {
+      "kind": "cover",
+      "eyebrow": "Printable coloring pages",
+      "headline": "Halloween's over. The dark isn't.",
+      "subline": "Swipe for 4 of the 200 pages",
+      "image": "mockups/3.png"
+    },
+    {
+      "kind": "page",
+      "caption": "1. The ghoul who never left the mansion",
+      "image": "interior/03.png"
+    },
+    {
+      "kind": "page",
+      "caption": "2. A skeleton climbing out by the tower",
+      "image": "interior/04.png"
+    },
+    {
+      "kind": "page",
+      "caption": "3. The lady in the gown",
+      "image": "interior/05.png"
+    },
+    {
+      "kind": "page",
+      "caption": "4. A crooked house deep in the woods",
+      "image": "interior/07.png"
+    },
+    {
+      "kind": "cta",
+      "headline": "200 pages for after dark",
+      "image": "interior/02.png",
+      "points": [
+        "Haunted houses, creatures, gothic scenes",
+        "Print-ready PDF + 300 DPI PNGs",
+        "A4 / 8.5 x 11 in, instant download"
+      ],
+      "cta": "Link in bio"
+    }
+  ]
+}

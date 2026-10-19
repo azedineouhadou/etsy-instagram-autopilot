@@ -1,0 +1,14 @@
+{
+  "template": "spotlight",
+  "background": "mint",
+  "eyebrow": "Christmas gift idea",
+  "headline": "A Christmas gift you print at home",
+  "subline": "66 country Christmas scenes + 23 covers to bind your own book",
+  "mockup": "mockups/2.jpg",
+  "badges": [
+    "66 scenes",
+    "23 printable covers",
+    "US Letter"
+  ],
+  "cta": "Link in bio"
+}
