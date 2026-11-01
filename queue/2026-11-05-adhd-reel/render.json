@@ -1,0 +1,21 @@
+{
+  "template": "page-flip-reel",
+  "hook": "\"I'm bored\" again? 37 pages, not a screen.",
+  "subline": "Mazes, hidden objects and spot the difference to print",
+  "pagesTitle": "Five of the 37 pages",
+  "pagesBadge": "37 pages",
+  "pages": [
+    "interior/3.jpg",
+    "interior/4.jpg",
+    "interior/6.jpg",
+    "interior/7.jpg",
+    "interior/8.jpg"
+  ],
+  "mockup": "mockups/1.jpg",
+  "points": [
+    "Mazes, spot the difference, tracing",
+    "Screen-free quiet time, home or class",
+    "6 x 9 in pages, instant download"
+  ],
+  "cta": "Link in bio"
+}

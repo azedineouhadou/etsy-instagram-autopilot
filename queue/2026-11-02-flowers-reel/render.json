@@ -1,0 +1,21 @@
+{
+  "template": "page-flip-reel",
+  "hook": "You can't kill these 250 vintage flowers.",
+  "subline": "One bouquet per page, drawn like an old botanical print",
+  "pagesTitle": "A few of the 250",
+  "pagesBadge": "250 pages",
+  "pages": [
+    "interior/8-01.png",
+    "interior/8-03.png",
+    "interior/8-07.png",
+    "interior/8-08.png",
+    "interior/8-10.png"
+  ],
+  "mockup": "mockups/3.jpg",
+  "points": [
+    "250 vintage flower pages",
+    "Pencils, markers or fine liners",
+    "US Letter, 300 DPI, instant download"
+  ],
+  "cta": "Link in bio"
+}

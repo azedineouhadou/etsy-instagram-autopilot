@@ -1,0 +1,43 @@
+{
+  "template": "carousel",
+  "slides": [
+    {
+      "kind": "cover",
+      "eyebrow": "Large print word search",
+      "headline": "50 Christmas puzzles for the whole table",
+      "subline": "Swipe for 4 of the 50 pages",
+      "image": "mockups/3.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "1. Holly, mistletoe and a nutcracker",
+      "image": "interior/aa_christmas_puzzle_3.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "2. Tinsel, a wreath and a snowman",
+      "image": "interior/aa_christmas_puzzle_5.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "3. Cookies, eggnog and cranberries",
+      "image": "interior/aa_christmas_puzzle_7.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "4. Flurries, icicles and the fireside",
+      "image": "interior/aa_christmas_puzzle_8.jpg"
+    },
+    {
+      "kind": "cta",
+      "headline": "50 puzzles, counted, not rounded up",
+      "image": "mockups/2.jpg",
+      "points": [
+        "Large print, easy on the eyes",
+        "8.5 x 11 in, prints at 100%",
+        "PDF + JPG, instant download"
+      ],
+      "cta": "Link in bio"
+    }
+  ]
+}
