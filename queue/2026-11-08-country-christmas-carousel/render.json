@@ -1,0 +1,43 @@
+{
+  "template": "carousel",
+  "slides": [
+    {
+      "kind": "cover",
+      "eyebrow": "Country Christmas coloring",
+      "headline": "Line art first. Your colors next.",
+      "subline": "Swipe for 4 of the 66 scenes",
+      "image": "mockups/3.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "1. The old pickup bringing the tree home",
+      "image": "interior/02.png"
+    },
+    {
+      "kind": "page",
+      "caption": "2. A wagon piled high with presents",
+      "image": "interior/03.png"
+    },
+    {
+      "kind": "page",
+      "caption": "3. Candles in the cabin window",
+      "image": "interior/06.png"
+    },
+    {
+      "kind": "page",
+      "caption": "4. A little roadside tree stand",
+      "image": "interior/04.png"
+    },
+    {
+      "kind": "cta",
+      "headline": "66 scenes and 23 covers to bind",
+      "image": "mockups/1.jpg",
+      "points": [
+        "Bind your own book, wrap it as a gift",
+        "US Letter, prints edge to edge",
+        "PDF plus 300 dpi PNG and JPG"
+      ],
+      "cta": "Link in bio"
+    }
+  ]
+}
