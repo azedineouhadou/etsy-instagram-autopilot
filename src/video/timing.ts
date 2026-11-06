@@ -7,4 +7,12 @@ export const REEL_TIMING = {
   crossfade: 10,
 };
 
-export const reelDuration = (pageCount: number) => REEL_TIMING.hook + pageCount * REEL_TIMING.perPage + REEL_TIMING.outro;
+/** Scene lengths in frames; a voiceover measures its own, a silent reel uses REEL_TIMING */
+export type SceneLengths = Pick<typeof REEL_TIMING, 'hook' | 'perPage' | 'outro'>;
+
+export const reelTiming = (measured?: SceneLengths) => ({ ...REEL_TIMING, ...measured });
+
+export const reelDuration = (pageCount: number, measured?: SceneLengths) => {
+  const { hook, perPage, outro } = reelTiming(measured);
+  return hook + pageCount * perPage + outro;
+};

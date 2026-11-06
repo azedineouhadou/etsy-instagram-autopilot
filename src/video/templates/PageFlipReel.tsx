@@ -3,7 +3,7 @@ import { AbsoluteFill, Audio, interpolate, Sequence, spring, staticFile, useCurr
 import type { PageFlipReelProps } from '../../render/spec';
 import { Backdrop, CheckItem, CtaPill, Handle, Headline, PaperCard, Pill, Subline, productSrc } from '../components';
 import { bg } from '../theme';
-import { REEL_TIMING, reelDuration } from '../timing';
+import { REEL_TIMING, reelDuration, reelTiming } from '../timing';
 
 // Instagram draws the caption, username and buttons over the bottom of a reel, so text and CTAs stay above this line (my estimate, not a published spec)
 const SAFE_BOTTOM = 380;
@@ -12,10 +12,11 @@ const SAFE_BOTTOM = 380;
  * Reel: hook text pops in → interior pages fly onto a pile → mockup, selling points and CTA.
  */
 export const PageFlipReel: React.FC<PageFlipReelProps> = (props) => {
-  const { hook, perPage, crossfade } = REEL_TIMING;
+  const timing = props.voiceover?.timing;
+  const { hook, perPage, crossfade } = reelTiming(timing);
   const pagesStart = hook - crossfade;
   const outroStart = hook + props.pages.length * perPage - crossfade;
-  const total = reelDuration(props.pages.length);
+  const total = reelDuration(props.pages.length, timing);
 
   return (
     <AbsoluteFill>
@@ -32,6 +33,7 @@ export const PageFlipReel: React.FC<PageFlipReelProps> = (props) => {
           <OutroScene {...props} />
         </FadeIn>
       </Sequence>
+      {props.voiceoverSrc && <Audio src={staticFile(props.voiceoverSrc)} />}
       {props.music && (
         <Audio
           src={staticFile(`audio/${props.music}`)}
@@ -91,10 +93,10 @@ const HookScene: React.FC<PageFlipReelProps> = ({ productDir, hook, subline, moc
   );
 };
 
-const PagesScene: React.FC<PageFlipReelProps> = ({ productDir, pages, pagesTitle, pagesBadge }) => {
+const PagesScene: React.FC<PageFlipReelProps> = ({ productDir, pages, pagesTitle, pagesBadge, voiceover }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const { perPage, crossfade } = REEL_TIMING;
+  const { perPage, crossfade } = reelTiming(voiceover?.timing);
 
   return (
     <Backdrop color={bg('sky')} seed="pages" drift>
