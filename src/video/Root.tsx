@@ -53,7 +53,7 @@ export const Root: React.FC = () => {
         fps={reel.fps}
         durationInFrames={reelDuration(reelDefaults.pages.length)}
         defaultProps={reelDefaults}
-        calculateMetadata={({ props }) => ({ durationInFrames: reelDuration(props.pages.length) })}
+        calculateMetadata={({ props }) => ({ durationInFrames: reelDuration(props.pages.length, props.voiceover?.timing) })}
       />
     </>
   );

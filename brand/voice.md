@@ -45,8 +45,41 @@ Approved shop voice for the instagram-agent skills. This is the source of truth;
 - **Do I swear:** No.
 - **Emoji in captions:** One or two, playful (🖍️ 🦕 🌈 💛).
 - **Face on camera:** Faceless.
-- **Voiceover or to-camera:** On-screen text only, with music.
-- **Pace:** n/a (no voiceover)
+- **Voiceover or to-camera:** Reels use a warm AI voiceover and no music. Single
+  images and carousels stay text only.
+- **Pace:** Slow and easy, about 2.2 words a second. Scripts stay under 38 words,
+  which makes an 18–20 second reel.
+
+## How I frame the book
+
+Reels, captions and carousels all follow Problem → Solution → Benefit. On a reel
+these are the voiceover's three lines: `hook`, `pages`, `outro`. Pick the audience
+as in "Who I am".
+
+**Kids' books (write to parents)**
+
+- **Problem:** too much screen time, kids bouncing off the walls, the struggle to
+  keep them busy with something worthwhile.
+- **Solution:** an instant, screen-free activity that brings peace and quiet to
+  the house.
+- **Benefit:** creativity on any kids' book. Problem solving when the pages are
+  puzzles, mazes or games. Focus, memory or attention only when that book's
+  listing says so, in the listing's wording ("builds focus", "focus practice").
+
+**Adult books**
+
+- **Problem:** brain rot, doomscrolling, burnout at the end of the day.
+- **Solution:** an easy, enjoyable reset away from the phone.
+- **Benefit:** stress relief, mindful time, disconnecting from the digital world,
+  sparking lost creativity.
+
+**Lines that stay out, whatever the listing says**
+
+- The ADHD workbook can say it is made for ADHD kids and repeat the skills its
+  listing names. It never says it treats, fixes or is a solution for ADHD, and
+  hooks describe the behavior ("bouncing off the walls"), not a diagnosis.
+- Nothing about anxiety, depression or any other health condition. "Stress
+  relief" is a general benefit; it never promises to treat a condition.
 
 ## My positions
 
@@ -63,7 +96,8 @@ Approved shop voice for the instagram-agent skills. This is the source of truth;
   listing includes those rights. The feed is for people who color.
 - **Clients, numbers or names I cannot say publicly:** None.
 - **Claims I am not allowed to make:** No educational, developmental or
-  mental-health claims that aren't on the listing. No fake reviews or sales
+  mental-health claims beyond what the listing says and what "How I frame the
+  book" allows. No fake reviews or sales
   numbers.
 
 ## Proof I can use

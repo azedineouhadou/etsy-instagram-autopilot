@@ -9,6 +9,7 @@ export const BACKGROUNDS = ['pink', 'peach', 'butter', 'mint', 'sky', 'lavender'
 const productImage = z.string().regex(/^(mockups|interior)\/[^/]+\.(png|jpe?g)$/i, 'must be mockups/<file> or interior/<file>');
 const line = (max: number) => z.string().min(1).max(max);
 const cta = line(30).default('Link in bio');
+const frames = z.number().int().positive();
 
 export const spotlightSpec = z.object({
   template: z.literal('spotlight'),
@@ -44,6 +45,15 @@ export const pageFlipReelSpec = z.object({
   cta,
   // File name in assets/audio/; royalty-free tracks only
   music: z.string().regex(/^[\w.-]+\.(mp3|m4a|wav)$/).optional(),
+  // Spoken instead of music. `timing` and voiceover.wav come from `npm run voiceover`
+  voiceover: z
+    .object({
+      hook: line(120),
+      pages: line(240),
+      outro: line(240),
+      timing: z.object({ hook: frames, perPage: frames, outro: frames }).optional(),
+    })
+    .optional(),
 });
 
 export const renderSpec = z.discriminatedUnion('template', [spotlightSpec, carouselSpec, pageFlipReelSpec]);
@@ -60,4 +70,4 @@ type WithProduct = { productDir: string };
 // `template` stays out of composition props so Remotion's Studio defaults stay short
 export type SpotlightProps = Omit<SpotlightSpec, 'template'> & WithProduct;
 export type CarouselSlideProps = { slide: CarouselSlideSpec; index: number; total: number } & WithProduct;
-export type PageFlipReelProps = Omit<PageFlipReelSpec, 'template'> & WithProduct;
+export type PageFlipReelProps = Omit<PageFlipReelSpec, 'template'> & WithProduct & { voiceoverSrc?: string };

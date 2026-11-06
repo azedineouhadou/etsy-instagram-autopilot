@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { PATHS } from '../lib/library.js';
 import { renderSpec, type RenderSpec } from '../render/spec.js';
-import { REEL_TIMING } from '../video/timing.js';
+import { reelTiming } from '../video/timing.js';
 
 const { values } = parseArgs({
   options: {
@@ -26,6 +26,8 @@ function fail(message: string): never {
   console.error(`✗ ${message}`);
   process.exit(1);
 }
+
+const voiceoverPath = (id: string) => `voiceover/${id}.wav`;
 
 function imagesOf(spec: RenderSpec): string[] {
   switch (spec.template) {
@@ -61,6 +63,12 @@ function loadJob(id: string): Job {
   }
   const music = parsed.data.template === 'page-flip-reel' ? parsed.data.music : undefined;
   if (music && !existsSync(join(audioDir, music))) fail(`${id}: assets/audio/${music} not found`);
+  if (parsed.data.template === 'page-flip-reel' && parsed.data.voiceover) {
+    if (music) fail(`${id}: use a voiceover or music, not both`);
+    if (!parsed.data.voiceover.timing || !existsSync(join(dir, 'voiceover.wav'))) {
+      fail(`${id}: voiceover not generated — run npm run voiceover -- --post ${id}`);
+    }
+  }
 
   return { id, dir, spec: parsed.data, productFolder };
 }
@@ -76,6 +84,9 @@ function stage(jobs: Job[]) {
   for (const job of jobs) {
     if (job.spec.template === 'page-flip-reel' && job.spec.music) {
       cpSync(join(audioDir, job.spec.music), join(stageDir, 'audio', job.spec.music));
+    }
+    if (job.spec.template === 'page-flip-reel' && job.spec.voiceover) {
+      cpSync(join(job.dir, 'voiceover.wav'), join(stageDir, voiceoverPath(job.id)));
     }
   }
   const { logo } = JSON.parse(readFileSync(resolve('brand/brand.json'), 'utf8')) as { logo: string | null };
@@ -113,7 +124,7 @@ async function renderJob(serveUrl: string, job: Job): Promise<Record<string, unk
     }
     case 'page-flip-reel': {
       const { template: _, ...rest } = spec;
-      const props = { ...rest, productDir };
+      const props = { ...rest, productDir, ...(spec.voiceover && { voiceoverSrc: voiceoverPath(job.id) }) };
       const composition = await selectComposition({ serveUrl, id: 'PageFlipReel', inputProps: props });
       let lastPct = -1;
       await renderMedia({
@@ -130,7 +141,7 @@ async function renderJob(serveUrl: string, job: Job): Promise<Record<string, unk
       });
       process.stdout.write('\n');
       // Cover = end of the hook scene, once every word has landed
-      const cover = await still('PageFlipReel', props, 'cover.jpg', REEL_TIMING.hook - 12);
+      const cover = await still('PageFlipReel', props, 'cover.jpg', reelTiming(spec.voiceover?.timing).hook - 12);
       return { type: 'reel', video: 'media/reel.mp4', cover, shareToFeed: true };
     }
   }

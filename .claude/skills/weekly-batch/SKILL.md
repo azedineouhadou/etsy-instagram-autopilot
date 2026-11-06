@@ -49,7 +49,9 @@ For each planned post:
    (plus teachers/homeschoolers if the listing says so). Write to that one
    audience only, as `brand/voice.md` says.
 4. **Write the copy with the Instagram skills:**
-   - reel → `ig-reel` for the hook (≤ 48 characters) and subline
+   - reel → `ig-reel` for the hook (≤ 48 characters), subline and voiceover
+     script: Problem → Solution → Benefit, as `brand/voice.md` "How I frame the
+     book" says
    - carousel → `ig-carousel` for the cover and slide captions
    - every post → `ig-caption` for the caption and hashtags
    - every caption and on-image line → `ig-human` last
@@ -58,7 +60,8 @@ For each planned post:
      invented numbers, reviews or claims.
    - Never mention PLR, MRR, KDP, Amazon, print-on-demand, reselling,
      "commercial use" or income — **even when the listing sells those rights**;
-     no therapy, treatment, cure or guarantee claims; no trademarked
+     no therapy, treatment, cure or guarantee claims; health and benefit wording
+     only as `brand/voice.md` "How I frame the book" allows; no trademarked
      characters; "free" only if it is. `npm run validate` blocks these words
      (list in `src/schemas/content-rules.ts`).
    - Caption ends with "Link in bio"; at most **5 hashtags**; caption +
@@ -78,18 +81,36 @@ For each planned post:
      |---|---|
      | `spotlight` | `background` (pink/peach/butter/mint/sky/lavender), `eyebrow` ≤ 32, `headline` ≤ 60, `subline` ≤ 90, `mockup`, `badges` ≤ 3 × 28 |
      | `carousel` | 5–6 `slides`: `cover` (headline ≤ 60, image), `page` × 3–4 (caption ≤ 70, interior image), `cta` (headline ≤ 50, ≤ 3 points × 48) |
-     | `page-flip-reel` | `hook` ≤ 48, `subline` ≤ 70, `pagesTitle` ≤ 40, `pagesBadge` ≤ 20, `pages` 2–6 interior images, `mockup`, `points` ≤ 3 × 48 |
+     | `page-flip-reel` | `hook` ≤ 48, `subline` ≤ 70, `pagesTitle` ≤ 40, `pagesBadge` ≤ 20, `pages` 2–6 interior images, `mockup`, `points` ≤ 3 × 48, `voiceover` |
+
+   - `voiceover` on a reel has three lines, spoken over the three scenes:
+     `hook` (the problem), `pages` (the solution, over the book pages, at least
+     4 seconds of speech for 5 pages) and `outro` (the benefit, ends "Link in
+     bio."). Under 38 words in total,
+     numbers spelled out ("sixty-six"), joined words split the way a transcript
+     writes them ("doom scrolling"), same fact rules as the caption.
 
 ## 4. Render and check
 
-1. Render **only the new posts** — a plain `npm run render` would also
+1. For each reel, make the voice first. VoiceStudio must be running on this
+   computer; if it isn't, ask the owner to start it:
+
+   ```bash
+   npm run voiceover -- --post <folder>
+   ```
+
+   It keeps the first take that says the script (it hears each one back) and
+   writes `voiceover.wav` plus the scene timing. Claude can't hear audio: tell
+   the owner to listen to every reel.
+
+2. Render **only the new posts** — a plain `npm run render` would also
    re-render posts already merged:
 
    ```bash
    npm run render -- --post <folder> --post <folder> …
    ```
 
-2. **Look at the output**: every carousel slide and single image
+3. **Look at the output**: every carousel slide and single image
    (`sips -Z 700` copies), and for reels the cover plus two frames
    (`npx remotion still src/video/index.ts PageFlipReel <out> --frame=<n>
    --props=<json> --public-dir=.cache/render-public`). Check: no text over
