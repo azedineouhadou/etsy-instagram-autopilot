@@ -1,0 +1,31 @@
+{
+  "template": "page-flip-reel",
+  "hook": "Doom scrolling? Color this instead.",
+  "subline": "200 haunted houses, creatures and gothic scenes",
+  "pagesTitle": "Five of the 200 pages",
+  "pagesBadge": "200 pages",
+  "pages": [
+    "interior/01.png",
+    "interior/02.png",
+    "interior/04.png",
+    "interior/05.png",
+    "interior/08.png"
+  ],
+  "mockup": "mockups/3.png",
+  "points": [
+    "200 detailed horror pages",
+    "PDF plus 300 DPI PNG files",
+    "A4 and 8.5 x 11 in"
+  ],
+  "cta": "Link in bio",
+  "voiceover": {
+    "hook": "Stop doom scrolling at midnight. Color a haunted house instead.",
+    "pages": "Two hundred horror pages of twisted creatures and gothic scenes, in deep detail.",
+    "outro": "Phone down at midnight, one skull at a time. You can grab the printable version right from the link in my bio.",
+    "timing": {
+      "hook": 165,
+      "perPage": 34,
+      "outro": 224
+    }
+  }
+}

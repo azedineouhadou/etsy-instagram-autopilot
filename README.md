@@ -109,7 +109,7 @@ queue/<YYYY-MM-DD>-<name>/
 |---|---|---|
 | `spotlight` | 1 image, 1080×1350 | headline ≤ 60 chars, up to 3 badges |
 | `carousel` | 2–6 slides (aim for **5–6**) | cover → pages → closing slide |
-| `page-flip-reel` | 1080×1920 video + cover, 18–20 s with a voiceover (9–15 s silent) | hook ≤ 48 chars, 2–6 pages, voiceover under 38 words, no music |
+| `page-flip-reel` | 1080×1920 video + cover, 18–20 s with a voiceover (9–15 s silent) | hook ≤ 48 chars, 2–6 pages, voiceover 44–48 words, no music |
 
 - **Times are US Eastern** with the offset for that date: `-04:00` until
   1 Nov 2026, `-05:00` after (US daylight saving). Example:

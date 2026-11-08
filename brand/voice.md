@@ -47,8 +47,8 @@ Approved shop voice for the instagram-agent skills. This is the source of truth;
 - **Face on camera:** Faceless.
 - **Voiceover or to-camera:** Reels use a warm AI voiceover and no music. Single
   images and carousels stay text only.
-- **Pace:** Slow and easy, about 2.2 words a second. Scripts stay under 38 words,
-  which makes an 18–20 second reel.
+- **Pace:** Medium and easy (speed 0.85), about 2.7 words a second. Scripts are
+  44–48 words, which makes an 18–20 second reel.
 
 ## How I frame the book
 
@@ -112,5 +112,8 @@ Real numbers only. As of October 2026 — refresh when they change.
 ## The ask
 
 - **My keyword CTA, if I use one:** none — "link in bio"
+- **Spoken CTA (reel voiceovers only):** the voiceover ends "You can grab the
+  printable version right from the link in my bio." Captions and the on-screen
+  button still say "Link in bio".
 - **What the keyword sends them:** n/a
 - **Where my link goes:** https://www.etsy.com/shop/PixoraPrintsCrafts
