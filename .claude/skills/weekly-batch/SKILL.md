@@ -85,8 +85,9 @@ For each planned post:
 
    - `voiceover` on a reel has three lines, spoken over the three scenes:
      `hook` (the problem), `pages` (the solution, over the book pages, at least
-     4 seconds of speech for 5 pages) and `outro` (the benefit, ends "Link in
-     bio."). Under 38 words in total,
+     4 seconds of speech for 5 pages) and `outro` (the benefit, then ends
+     with exactly "You can grab the printable version right from the link in my
+     bio."). 44–48 words in total, those 13 included,
      numbers spelled out ("sixty-six"), joined words split the way a transcript
      writes them ("doom scrolling"), same fact rules as the caption.
 
