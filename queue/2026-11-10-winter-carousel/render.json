@@ -1,0 +1,43 @@
+{
+  "template": "carousel",
+  "slides": [
+    {
+      "kind": "cover",
+      "eyebrow": "Cozy Winter coloring",
+      "headline": "Stuck inside? Print some snow.",
+      "subline": "Swipe for 4 of the 50 pages",
+      "image": "mockups/mockup-2.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "1. Sledding down the big hill",
+      "image": "interior/1-01.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "2. Building a snowman",
+      "image": "interior/1-02.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "3. A bunny in a cozy scarf",
+      "image": "interior/1-04.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "4. A sleigh full of presents",
+      "image": "interior/1-09.jpg"
+    },
+    {
+      "kind": "cta",
+      "headline": "50 bold, easy pages and 10 covers",
+      "image": "mockups/mockup-3.jpg",
+      "points": [
+        "Big shapes for little hands",
+        "8.5 x 8.5 in square pages",
+        "Print at home as often as you like"
+      ],
+      "cta": "Link in bio"
+    }
+  ]
+}

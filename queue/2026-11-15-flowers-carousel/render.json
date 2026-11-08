@@ -1,0 +1,43 @@
+{
+  "template": "carousel",
+  "slides": [
+    {
+      "kind": "cover",
+      "eyebrow": "Vintage flower coloring",
+      "headline": "A Sunday night without the scroll",
+      "subline": "Swipe for 4 of the 250 pages",
+      "image": "mockups/3.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "1. One big bloom to start slow",
+      "image": "interior/8-04.png"
+    },
+    {
+      "kind": "page",
+      "caption": "2. Layered petals for your fine liners",
+      "image": "interior/8-03.png"
+    },
+    {
+      "kind": "page",
+      "caption": "3. A loose stem with room to breathe",
+      "image": "interior/8-02.png"
+    },
+    {
+      "kind": "page",
+      "caption": "4. A full bouquet for a long evening",
+      "image": "interior/8-07.png"
+    },
+    {
+      "kind": "cta",
+      "headline": "250 pages, one at a time",
+      "image": "mockups/2.jpg",
+      "points": [
+        "Inspired by classic botanical illustrations",
+        "US Letter 8.5 x 11 in, 300 DPI",
+        "PDF plus JPG and PNG files"
+      ],
+      "cta": "Link in bio"
+    }
+  ]
+}
