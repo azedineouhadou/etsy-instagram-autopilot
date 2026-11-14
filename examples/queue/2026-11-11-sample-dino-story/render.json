@@ -1,0 +1,47 @@
+{
+  "template": "story-reel",
+  "backdrop": "interior/02.png",
+  "voiced": false,
+  "beats": [
+    {
+      "say": "Which dinosaur would your kid color first on a rainy day?",
+      "scene": { "kind": "zoom", "image": "interior/01.png", "from": [0.5, 0.5, 1], "to": [0.45, 0.45, 1.8] },
+      "stickers": [{ "kind": "circle", "x": 0.45, "y": 0.45, "r": 0.2, "on": "first" }],
+      "emphasis": ["dinosaur"]
+    },
+    {
+      "say": "Not another rainy afternoon of cartoons on a tablet.",
+      "scene": { "kind": "contrast", "before": "Cartoons on a tablet", "after": "Crayons at the table" },
+      "emphasis": ["tablet"]
+    },
+    {
+      "say": "Meet the dinosaur coloring book: 30 pages to print at home.",
+      "scene": { "kind": "cover", "image": "mockups/01.png" },
+      "stickers": [{ "kind": "count", "value": 30, "label": "pages", "on": "30" }],
+      "emphasis": ["30"]
+    },
+    {
+      "say": "Thick, simple outlines made for little hands to color in.",
+      "scene": { "kind": "pages", "images": ["interior/01.png", "interior/02.png", "interior/03.png"] },
+      "stickers": [{ "kind": "chips", "items": ["Thick outlines", "Ages 4–8"], "on": "outlines" }],
+      "emphasis": ["little"]
+    },
+    {
+      "say": "Print it, color it, then print it again tomorrow.",
+      "scene": { "kind": "zoom", "image": "interior/04.png", "from": [0.5, 0.5, 1.1], "to": [0.5, 0.4, 1.5] },
+      "stickers": [{ "kind": "checks", "items": ["Print", "Color", "Print again"] }],
+      "emphasis": ["again"]
+    },
+    {
+      "say": "Instant download in US Letter and A4 sizes.",
+      "scene": { "kind": "zoom", "image": "interior/03.png", "from": [0.5, 0.5, 1], "to": [0.55, 0.55, 1.3] },
+      "stickers": [{ "kind": "pill", "text": "Instant download", "on": "download" }, { "kind": "stamp", "text": "Print at home" }],
+      "emphasis": ["Instant"]
+    },
+    {
+      "say": "You can grab the printable version right from the link in my bio.",
+      "scene": { "kind": "cta", "image": "mockups/01.png", "title": "Dinosaur Coloring Book", "points": ["Instant download", "Ages 4–8"] },
+      "emphasis": ["bio"]
+    }
+  ]
+}

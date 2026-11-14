@@ -15,7 +15,7 @@
     "validate:examples": "tsx src/cli/validate.ts --root examples",
     "plan:week": "tsx src/cli/plan-week.ts",
     "voiceover": "tsx src/cli/voiceover.ts",
-  "render": "tsx src/cli/render.ts",
+    "render": "tsx src/cli/render.ts",
     "render:examples": "tsx src/cli/render.ts --root examples",
     "publish": "tsx src/cli/publish.ts",
     "publish:examples": "tsx src/cli/publish.ts --root examples",
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@remotion/bundler": "4.0.536",
+    "@remotion/captions": "4.0.536",
     "@remotion/cli": "4.0.536",
     "@remotion/google-fonts": "4.0.536",
     "@remotion/renderer": "4.0.536",

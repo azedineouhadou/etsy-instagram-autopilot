@@ -1,8 +1,10 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { extname, join } from 'node:path';
+import { basename, extname, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { loadPosts, loadProducts, type Loaded } from '../lib/library.js';
 import { findRotationIssues } from '../lib/rotation.js';
+import { readStoryVoiceover } from '../lib/voiceover.js';
+import { captionWords, renderSpec, type StoryReelSpec } from '../render/spec.js';
 import { CONTENT_RULES, findBannedPhrases } from '../schemas/content-rules.js';
 import { INSTAGRAM_LIMITS } from '../schemas/instagram-limits.js';
 import { mediaFiles, type Post } from '../schemas/post.js';
@@ -60,8 +62,42 @@ function checkPost(
   const banned = findBannedPhrases([post.caption, ...post.hashtags, post.altText ?? '', onImage].join('\n'));
   if (banned.length) errors.push(`${owner}: off-limits wording ${banned.join(', ')} — see brand/voice.md`);
 
+  if (onImage) checkRender(owner, dir, onImage);
+
   if (Date.parse(post.scheduledAt) < now) warnings.push(`${owner}: scheduledAt is in the past, it will publish on the next run`);
   if (!post.approved) warnings.push(`${owner}: not approved, the publisher will skip it`);
+}
+
+function checkRender(owner: string, dir: string, json: string) {
+  let raw: unknown;
+  try {
+    raw = JSON.parse(json);
+  } catch (err) {
+    errors.push(`${owner}: render.json is not valid JSON: ${(err as Error).message}`);
+    return;
+  }
+  const parsed = renderSpec.safeParse(raw);
+  if (!parsed.success) {
+    for (const i of parsed.error.issues) errors.push(`${owner}: render.json ${i.path.join('.') || '(root)'}: ${i.message}`);
+    return;
+  }
+  if (parsed.data.template === 'story-reel') checkStoryReel(owner, dir, parsed.data);
+}
+
+function checkStoryReel(owner: string, dir: string, spec: StoryReelSpec) {
+  const says = spec.beats.map((b) => b.say);
+  const [minBeats, maxBeats] = CONTENT_RULES.storyRecommendedBeats;
+  const [minWords, maxWords] = CONTENT_RULES.storyRecommendedWords;
+  const words = says.flatMap(captionWords).length;
+  if (spec.beats.length < minBeats || spec.beats.length > maxBeats) {
+    warnings.push(`${owner}: ${spec.beats.length} beats — aim for ${minBeats} to ${maxBeats}`);
+  }
+  if (words < minWords || words > maxWords) warnings.push(`${owner}: voiceover is ${words} words — aim for ${minWords} to ${maxWords} (about 25–28 s)`);
+  if (spec.music && !existsSync(join(root, 'assets/audio', spec.music))) errors.push(`${owner}: music assets/audio/${spec.music} not found`);
+  if (spec.voiced) {
+    const { problem } = readStoryVoiceover(dir, says);
+    if (problem) errors.push(`${owner}: ${problem} — run npm run voiceover -- --post ${basename(dir)}, then render`);
+  }
 }
 
 function valid<T>(items: Loaded<T>[]): (Loaded<T> & { value: T })[] {
