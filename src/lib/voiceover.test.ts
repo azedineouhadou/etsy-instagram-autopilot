@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { alignParts, MIN_ACCURACY, planReelTiming, spokenWords, wordAccuracy } from './voiceover.js';
+import { alignParts, MIN_ACCURACY, planBeatTiming, planReelTiming, scriptHash, spokenWords, timeScript, toSpeech, wordAccuracy } from './voiceover.js';
 
 describe('spokenWords', () => {
   it('treats digits and spelled-out numbers as the same words', () => {
@@ -69,5 +69,67 @@ describe('planReelTiming', () => {
 
   it('refuses a pages line too short to show the pages', () => {
     assert.throws(() => planReelTiming({ hookEnd: 2, pagesStart: 2.2, outroStart: 6, end: 9 }, 6), /pages line/);
+  });
+});
+
+describe('toSpeech', () => {
+  it('spells digits out for the voice and leaves words alone', () => {
+    assert.equal(toSpeech('200 horror pages, 37 mazes.'), 'two hundred horror pages, thirty seven mazes.');
+    assert.equal(toSpeech('Link in bio.'), 'Link in bio.');
+  });
+});
+
+describe('scriptHash', () => {
+  it('changes when any line changes', () => {
+    assert.equal(scriptHash(['a b', 'c']), scriptHash(['a b', 'c']));
+    assert.notEqual(scriptHash(['a b', 'c']), scriptHash(['a b', 'c.']));
+    assert.notEqual(scriptHash(['a', 'b c']), scriptHash(['a b', 'c']));
+  });
+});
+
+describe('timeScript', () => {
+  // Transcripts write numbers as digits and drop dashes; each word lasts half a second
+  const heard = (text: string) => text.split(' ').map((word, i) => ({ word, start: i * 0.5, end: (i + 1) * 0.5 }));
+
+  it('times every script word, a number spanning all the words the voice said for it', () => {
+    const words = timeScript(['200 horror pages.', 'Link in bio.'], heard('two hundred horror pages link in bio'));
+    assert.deepEqual(
+      words.map((w) => [w.beat, w.text, w.startMs, w.endMs]),
+      [
+        [0, '200', 0, 1000],
+        [0, 'horror', 1000, 1500],
+        [0, 'pages.', 1500, 2000],
+        [1, 'Link', 2000, 2500],
+        [1, 'in', 2500, 3000],
+        [1, 'bio.', 3000, 3500],
+      ],
+    );
+  });
+
+  it('keeps the captions in the script spelling when a word is misheard', () => {
+    const words = timeScript(['Pick your monster.'], heard('pick your mobster'));
+    assert.deepEqual(words.map((w) => w.text), ['Pick', 'your', 'monster.']);
+    assert.equal(words[2]!.startMs, 1000);
+  });
+
+  it('gives an unspoken token the moment of the word before it', () => {
+    const words = timeScript(['Color – relax'], heard('color relax'));
+    assert.deepEqual(words.map((w) => [w.text, w.startMs, w.endMs]), [['Color', 0, 500], ['–', 500, 500], ['relax', 500, 1000]]);
+  });
+});
+
+describe('planBeatTiming', () => {
+  const word = (beat: number, startMs: number, endMs: number) => ({ beat, text: 'w', startMs, endMs });
+
+  it('cuts each beat halfway through the pause before its first word and holds a second after the voice', () => {
+    const words = [word(0, 400, 1800), word(0, 1800, 2600), word(1, 3000, 4000), word(2, 4600, 6200)];
+    const { beats } = planBeatTiming(words, 3);
+    assert.deepEqual(beats, [84, 45, 87]); // cuts at 2.8 s and 4.3 s, end at 6.2 + 1 s
+    assert.equal(beats.reduce((a, b) => a + b), Math.round(7.2 * 30));
+  });
+
+  it('refuses a beat too short to register', () => {
+    const words = [word(0, 400, 2000), word(1, 2100, 2500), word(2, 2600, 5000)];
+    assert.throws(() => planBeatTiming(words, 3), /beat 2 is only/);
   });
 });

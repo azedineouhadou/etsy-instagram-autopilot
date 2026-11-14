@@ -4,6 +4,11 @@ export const CONTENT_RULES = {
   carouselMinSlides: 2,
   carouselMaxSlides: 6,
   carouselRecommendedMinSlides: 5,
+  // Story reel: hard limits in the spec, recommended ranges as validator warnings (25–28 s at about 3 words a second)
+  storyBeatsMin: 4,
+  storyBeatsMax: 12,
+  storyRecommendedBeats: [6, 10],
+  storyRecommendedWords: [70, 80],
 } as const;
 
 /**

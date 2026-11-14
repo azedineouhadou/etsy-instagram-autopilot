@@ -1,12 +1,23 @@
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { z } from 'zod';
 import { PATHS } from '../lib/library.js';
-import { alignParts, LEAD_SECONDS, MIN_ACCURACY, planReelTiming, wordAccuracy, type HeardWord } from '../lib/voiceover.js';
-import { pageFlipReelSpec } from '../render/spec.js';
+import {
+  alignParts,
+  LEAD_SECONDS,
+  MIN_ACCURACY,
+  planBeatTiming,
+  planReelTiming,
+  scriptHash,
+  timeScript,
+  toSpeech,
+  wordAccuracy,
+  type HeardWord,
+} from '../lib/voiceover.js';
+import { renderSpec, type PageFlipReelSpec, type StoryReelSpec } from '../render/spec.js';
 
 const API = 'http://127.0.0.1:3900';
 const TAKES = 6;
@@ -80,11 +91,18 @@ async function run(id: string) {
   const dir = join(resolve(values.root), PATHS.queue, id);
   const specPath = join(dir, 'render.json');
   const raw = JSON.parse(readFileSync(specPath, 'utf8')) as Record<string, unknown>;
-  const spec = pageFlipReelSpec.parse(raw);
-  if (!spec.voiceover) fail(`${id}: render.json has no voiceover`);
-  const { hook, pages, outro } = spec.voiceover;
+  const spec = renderSpec.parse(raw);
 
   console.log(`→ ${id}`);
+  if (spec.template === 'story-reel') return storyVoiceover(dir, spec);
+  if (spec.template === 'page-flip-reel') return pageFlipVoiceover(dir, specPath, raw, spec);
+  fail(`${id}: ${spec.template} posts have no voiceover`);
+}
+
+async function pageFlipVoiceover(dir: string, specPath: string, raw: Record<string, unknown>, spec: PageFlipReelSpec) {
+  if (!spec.voiceover) fail(`${basename(dir)}: render.json has no voiceover`);
+  const { hook, pages, outro } = spec.voiceover;
+
   const { wav, words } = await bestTake(`${hook} ${pages} ${outro}`);
   finish(wav, join(dir, 'voiceover.wav'));
 
@@ -93,6 +111,26 @@ async function run(id: string) {
   writeFileSync(specPath, `${JSON.stringify({ ...raw, voiceover: { hook, pages, outro, timing } }, null, 2)}\n`);
   const seconds = (timing.hook + spec.pages.length * timing.perPage + timing.outro) / 30;
   console.log(`  ✓ voiceover.wav, reel length ${seconds.toFixed(1)} s`);
+}
+
+/** Story reels: one take of every line, then beat lengths and caption timings into voiceover.json */
+async function storyVoiceover(dir: string, spec: StoryReelSpec) {
+  if (!spec.voiced) fail(`${basename(dir)}: render.json says "voiced": false`);
+  const says = spec.beats.map((b) => b.say);
+  // Accuracy is checked against what the voice was asked to say, digits already spelled out
+  const { wav, words } = await bestTake(says.map(toSpeech).join(' '));
+  finish(wav, join(dir, 'voiceover.wav'));
+
+  const shifted = words.map((w) => ({ ...w, start: w.start + LEAD_SECONDS, end: w.end + LEAD_SECONDS }));
+  let timing;
+  try {
+    timing = planBeatTiming(timeScript(says, shifted), says.length);
+  } catch (err) {
+    fail(`${basename(dir)}: ${(err as Error).message}`);
+  }
+  writeFileSync(join(dir, 'voiceover.json'), `${JSON.stringify({ scriptHash: scriptHash(says), ...timing }, null, 2)}\n`);
+  const seconds = timing.beats.reduce((a, b) => a + b, 0) / 30;
+  console.log(`  ✓ voiceover.wav + voiceover.json, ${spec.beats.length} beats, reel length ${seconds.toFixed(1)} s`);
 }
 
 if (!values.post?.length) fail('name the reels: npm run voiceover -- --post <folder>');

@@ -49,8 +49,8 @@ For each planned post:
    (plus teachers/homeschoolers if the listing says so). Write to that one
    audience only, as `brand/voice.md` says.
 4. **Write the copy with the Instagram skills:**
-   - reel → `ig-reel` for the hook (≤ 48 characters), subline and voiceover
-     script: Problem → Solution → Benefit, as `brand/voice.md` "How I frame the
+   - reel → `ig-reel` for the hook and the beat script (see "Story reels"
+     below): Problem → Solution → Benefit, as `brand/voice.md` "How I frame the
      book" says
    - carousel → `ig-carousel` for the cover and slide captions
    - every post → `ig-caption` for the caption and hashtags
@@ -73,7 +73,8 @@ For each planned post:
      `approved: true` (unless the owner asked to hold it), `media` placeholder of
      the right type (the renderer overwrites it), `caption`, `hashtags`, and
      `altText` for single images.
-   - `render.json`: one of the three templates. Copy the shape from
+   - `render.json`: one of the templates below; reels are always `story-reel`
+     (`page-flip-reel` stays only for older posts). Copy the shape from
      `examples/queue/*/render.json`; limits are enforced by
      `src/render/spec.ts`:
 
@@ -81,15 +82,73 @@ For each planned post:
      |---|---|
      | `spotlight` | `background` (pink/peach/butter/mint/sky/lavender), `eyebrow` ≤ 32, `headline` ≤ 60, `subline` ≤ 90, `mockup`, `badges` ≤ 3 × 28 |
      | `carousel` | 5–6 `slides`: `cover` (headline ≤ 60, image), `page` × 3–4 (caption ≤ 70, interior image), `cta` (headline ≤ 50, ≤ 3 points × 48) |
-     | `page-flip-reel` | `hook` ≤ 48, `subline` ≤ 70, `pagesTitle` ≤ 40, `pagesBadge` ≤ 20, `pages` 2–6 interior images, `mockup`, `points` ≤ 3 × 48, `voiceover` |
+     | `story-reel` | `backdrop` (an image of the book, shown blurred), optional `cover` (beat index), `music` (a file in `assets/audio/`) + optional `musicStart` (seconds to skip), 6–10 `beats`: `say` ≤ 90, `scene`, ≤ 2 `stickers`, ≤ 3 `emphasis` words |
 
-   - `voiceover` on a reel has three lines, spoken over the three scenes:
-     `hook` (the problem), `pages` (the solution, over the book pages, at least
-     4 seconds of speech for 5 pages) and `outro` (the benefit, then ends
-     with exactly "You can grab the printable version right from the link in my
-     bio."). 44–48 words in total, those 13 included,
-     numbers spelled out ("sixty-six"), joined words split the way a transcript
-     writes them ("doom scrolling"), same fact rules as the caption.
+### Story reels
+
+A story reel is told in **beats**: one spoken line each, with its own scene and
+stickers, word-synced captions and sound effects, over the book's own art
+blurred. **70–80 words over 6–10 beats ≈ 25–28 seconds.** The sample is
+`examples/queue/2026-11-11-sample-dino-story/render.json`.
+
+- `say`: the line, spoken and shown as captions. Write numbers as digits
+  ("200 pages"): the voiceover spells them out, the captions keep the digits.
+  Split joined words the way a transcript writes them ("doom scrolling").
+  **Write for breath:** the voice runs at normal speed, so pauses come from
+  punctuation — commas where a person would breathe ("Haunted houses, twisted
+  creatures, and gothic scenes"), one idea per sentence. A full stop or a
+  question mark gives the longest pause; a comma inside a list gives a short
+  one; a comma before "for …" or "by …", or "...", barely registers — end the
+  sentence instead when a pause matters. Never slow the voice down. The
+  last beat ends with exactly "You can grab the printable version right from
+  the link in my bio."
+- `emphasis`: up to 3 words of `say` drawn in yellow — the word that matters.
+- Scenes (`scene.kind`):
+
+  | Scene | Fields | Use it for |
+  |---|---|---|
+  | `zoom` | `image`, `from`/`to` = `[x, y, scale]` (x, y 0–1 on the image, scale 1–4) | the hook on a detail; any "look at this" line. Two beats zooming on the same image read as one shot (start the second at the first's `to`) |
+  | `pages` | `images` (2–4) | "look inside", variety |
+  | `cover` | `image` (a mockup) | the reveal: "Meet …" |
+  | `contrast` | `before`, `after` (≤ 40 each) | the problem → better habit ("Doom scrolling at 1 am" → "One page before bed") |
+  | `reveal` | `from`, `to` | line art → colored. **Only when a mockup really shows that page colored** |
+  | `cta` | `image`, `title` ≤ 50, `points` ≤ 2 × 28 | always the last beat |
+
+- Stickers (≤ 2 per beat; add `"on": "<word of say>"` to land it as that
+  word is spoken): `count` (`value`, `label`: "200 pages" — from `pageCount`),
+  `chips` (≤ 3 × 22, from `sellingPoints`), `stamp` (≤ 28, slams down),
+  `pill` (≤ 28, the payoff: "Found them all!"), `checks` (≤ 4 items that tick
+  one by one), `circle` (`x`, `y`, `r` on a zoom scene's image).
+- **The arc** — use it as a shape, not a template:
+  1. **Hook** — `zoom` into the most striking detail + a question or a dare
+  2. **Contrast** — the problem, struck out (`contrast`)
+  3. **Reveal** — `cover` + `count` sticker
+  4. **Benefits** — `pages` or `zoom` + `chips`
+  5. **Your turn** — the reader acts: the niche move below
+  6. **Payoff** — `pill`, `checks` or `reveal`
+  7. **CTA** — `cta` + the spoken CTA
+
+  Hook + Contrast are the Problem, Reveal + Benefits the Solution, Your turn +
+  Payoff the Benefit (`brand/voice.md` "How I frame the book").
+- **Niche moves.** Invent within the book's niche every week; these are
+  starting points, never repeat last week's hook:
+
+  | Niche | Your turn | Payoff / stickers |
+  |---|---|---|
+  | Horror | "Pick your monster": zoom across 2–3 creatures, a `circle` on each | `stamp`: "Not for the faint-hearted" |
+  | Florals, cozy, winter | "Pick your palette": `chips` of colour words | `reveal` line art → colored mockup, if one exists |
+  | Color by number | zoom on the numbers | `reveal` numbered page → colored mockup |
+  | Word search, puzzles | `circle` on found words | `checks`, `pill`: "Found them all!" |
+  | Kids' workbooks | `checks` ticking off the activities | `pill`: "Done before snack time" |
+  | Christmas, seasonal | the season's ritual ("Advent evenings") | `stamp` with the season + `count` |
+
+- No `music` by default: the owner prefers the voice alone. Add it only when
+  the owner asks, with a track from `assets/audio/` (never the `sfx/` folder);
+  loudness is evened out at render and the music dips under the voice on its
+  own.
+- Pick `backdrop` for mood: a busy, colorful image of the book blurs into a
+  rich backdrop; a mostly-white page gives grey.
+- Facts on stickers and scenes follow the same rules as captions.
 
 ## 4. Render and check
 
@@ -101,8 +160,11 @@ For each planned post:
    ```
 
    It keeps the first take that says the script (it hears each one back) and
-   writes `voiceover.wav` plus the scene timing. Claude can't hear audio: tell
-   the owner to listen to every reel.
+   writes `voiceover.wav` plus `voiceover.json` (beat lengths and the time of
+   every caption word). Editing a `say` afterwards makes validate fail with
+   "voiceover out of date": run it again. If it says a beat is too short,
+   lengthen that line or merge it into the next. Claude can't hear audio: tell
+   the owner to listen to every reel (voice, caption sync, sound-effect levels).
 
 2. Render **only the new posts** — a plain `npm run render` would also
    re-render posts already merged:
@@ -112,11 +174,13 @@ For each planned post:
    ```
 
 3. **Look at the output**: every carousel slide and single image
-   (`sips -Z 700` copies), and for reels the cover plus two frames
-   (`npx remotion still src/video/index.ts PageFlipReel <out> --frame=<n>
-   --props=<json> --public-dir=.cache/render-public`). Check: no text over
-   images, nothing cut off, the right pages, readable at phone size. Fix
-   `render.json` and re-render until clean.
+   (`sips -Z 700` copies), and for reels the cover plus one frame per second
+   (`npx remotion ffmpeg -ss <s> -i media/reel.mp4 -frames:v 1 -s 270x480
+   <scratchpad>/f_<s>.jpg`, tiled into a contact sheet with sharp). Check: every
+   beat shows what its line says, stickers don't cover the detail being talked
+   about, captions readable, nothing cut off, the right pages. Fix
+   `render.json`, re-run the voiceover if a `say` changed, and re-render until
+   clean.
 
 ## 5. Validate and dry-run
 

@@ -1,10 +1,13 @@
 import { bundle } from '@remotion/bundler';
 import { ensureBrowser, renderMedia, renderStill, selectComposition } from '@remotion/renderer';
+import { execFileSync } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { PATHS } from '../lib/library.js';
-import { renderSpec, type RenderSpec } from '../render/spec.js';
+import { readStoryVoiceover } from '../lib/voiceover.js';
+import { renderSpec, type RenderSpec, type StoryTiming } from '../render/spec.js';
+import { coverFrame, FPS, MUSIC_LUFS, silentTiming, totalFrames } from '../video/story/timeline.js';
 import { reelTiming } from '../video/timing.js';
 
 const { values } = parseArgs({
@@ -17,10 +20,13 @@ const root = resolve(values.root);
 const queueDir = join(root, PATHS.queue);
 const productsDir = join(root, PATHS.products);
 const audioDir = join(root, 'assets/audio');
+// Story reel sound effects live in the project, so examples renders use them too
+const sfxDir = resolve('assets/audio/sfx');
+const SOUNDS = ['whoosh', 'pop', 'ding', 'typing'];
 // Remotion copies its whole public dir into the bundle, so only the files these posts use are staged
 const stageDir = resolve('.cache/render-public');
 
-type Job = { id: string; dir: string; spec: RenderSpec; productFolder: string };
+type Job = { id: string; dir: string; spec: RenderSpec; productFolder: string; timing?: StoryTiming };
 
 function fail(message: string): never {
   console.error(`✗ ${message}`);
@@ -28,6 +34,7 @@ function fail(message: string): never {
 }
 
 const voiceoverPath = (id: string) => `voiceover/${id}.wav`;
+const musicPath = (id: string) => `music/${id}.wav`;
 
 function imagesOf(spec: RenderSpec): string[] {
   switch (spec.template) {
@@ -37,8 +44,29 @@ function imagesOf(spec: RenderSpec): string[] {
       return spec.slides.map((s) => s.image);
     case 'page-flip-reel':
       return [...spec.pages, spec.mockup];
+    case 'story-reel':
+      return [
+        spec.backdrop,
+        ...spec.beats.flatMap(({ scene }) => {
+          switch (scene.kind) {
+            case 'zoom':
+            case 'cover':
+            case 'cta':
+              return [scene.image];
+            case 'pages':
+              return scene.images;
+            case 'reveal':
+              return [scene.from, scene.to];
+            case 'contrast':
+              return [];
+          }
+        }),
+      ];
   }
 }
+
+const STORY_CRF = 23;
+const hasSfx = () => SOUNDS.every((s) => existsSync(join(sfxDir, `${s}.mp3`)));
 
 function loadJob(id: string): Job {
   const dir = join(queueDir, id);
@@ -61,7 +89,7 @@ function loadJob(id: string): Job {
   for (const image of imagesOf(parsed.data)) {
     if (!existsSync(join(productsDir, productFolder, image))) fail(`${id}: ${productFolder}/${image} not found`);
   }
-  const music = parsed.data.template === 'page-flip-reel' ? parsed.data.music : undefined;
+  const music = parsed.data.template === 'page-flip-reel' || parsed.data.template === 'story-reel' ? parsed.data.music : undefined;
   if (music && !existsSync(join(audioDir, music))) fail(`${id}: assets/audio/${music} not found`);
   if (parsed.data.template === 'page-flip-reel' && parsed.data.voiceover) {
     if (music) fail(`${id}: use a voiceover or music, not both`);
@@ -70,7 +98,14 @@ function loadJob(id: string): Job {
     }
   }
 
-  return { id, dir, spec: parsed.data, productFolder };
+  let timing: StoryTiming | undefined;
+  if (parsed.data.template === 'story-reel' && parsed.data.voiced) {
+    const voice = readStoryVoiceover(dir, parsed.data.beats.map((b) => b.say));
+    if (voice.problem) fail(`${id}: ${voice.problem} — run npm run voiceover -- --post ${id}`);
+    timing = voice.timing;
+  }
+
+  return { id, dir, spec: parsed.data, productFolder, timing };
 }
 
 function stage(jobs: Job[]) {
@@ -85,13 +120,55 @@ function stage(jobs: Job[]) {
     if (job.spec.template === 'page-flip-reel' && job.spec.music) {
       cpSync(join(audioDir, job.spec.music), join(stageDir, 'audio', job.spec.music));
     }
-    if (job.spec.template === 'page-flip-reel' && job.spec.voiceover) {
+    if ((job.spec.template === 'page-flip-reel' && job.spec.voiceover) || job.timing) {
       cpSync(join(job.dir, 'voiceover.wav'), join(stageDir, voiceoverPath(job.id)));
     }
+  }
+  for (const job of jobs) {
+    if (job.spec.template === 'story-reel' && job.spec.music) stageMusic(job, job.spec.music, job.spec.musicStart);
+  }
+  if (jobs.some((j) => j.spec.template === 'story-reel') && hasSfx()) {
+    cpSync(sfxDir, join(stageDir, 'audio', 'sfx'), { recursive: true, filter: (f) => !f.endsWith('.DS_Store') });
   }
   const { logo } = JSON.parse(readFileSync(resolve('brand/brand.json'), 'utf8')) as { logo: string | null };
   if (logo) cpSync(resolve('brand', logo), join(stageDir, 'brand', logo));
   mkdirSync(stageDir, { recursive: true });
+}
+
+/**
+ * Tracks arrive at very different loudness (−15 to −8 LUFS in assets/audio), so each is evened out to
+ * MUSIC_LUFS and cut to the reel's length before the template sets its level under the voice.
+ */
+function stageMusic(job: Job, music: string, start: number) {
+  if (job.spec.template !== 'story-reel') return;
+  const seconds = totalFrames((job.timing ?? silentTiming(job.spec.beats)).beats) / FPS + 1;
+  const output = join(stageDir, musicPath(job.id));
+  mkdirSync(join(stageDir, 'music'), { recursive: true });
+  const filter = `loudnorm=I=${MUSIC_LUFS}:TP=-2:LRA=11,aresample=48000`;
+  execFileSync(
+    'npx',
+    ['remotion', 'ffmpeg', '-hide_banner', '-y', '-ss', String(start), '-t', String(seconds), '-i', join(audioDir, music), '-af', filter, '-ac', '2', '-c:a', 'pcm_s16le', output],
+    { stdio: 'pipe' },
+  );
+}
+
+async function renderVideo(serveUrl: string, id: string, inputProps: Record<string, unknown>, output: string, crf?: number) {
+  const composition = await selectComposition({ serveUrl, id, inputProps });
+  let lastPct = -1;
+  await renderMedia({
+    serveUrl,
+    composition,
+    inputProps,
+    codec: 'h264',
+    crf,
+    outputLocation: output,
+    onProgress: ({ progress }) => {
+      const pct = Math.floor(progress * 10) * 10;
+      if (pct !== lastPct) process.stdout.write(`  ${pct}%`);
+      lastPct = pct;
+    },
+  });
+  process.stdout.write('\n');
 }
 
 async function renderJob(serveUrl: string, job: Job): Promise<Record<string, unknown>> {
@@ -125,23 +202,25 @@ async function renderJob(serveUrl: string, job: Job): Promise<Record<string, unk
     case 'page-flip-reel': {
       const { template: _, ...rest } = spec;
       const props = { ...rest, productDir, ...(spec.voiceover && { voiceoverSrc: voiceoverPath(job.id) }) };
-      const composition = await selectComposition({ serveUrl, id: 'PageFlipReel', inputProps: props });
-      let lastPct = -1;
-      await renderMedia({
-        serveUrl,
-        composition,
-        inputProps: props,
-        codec: 'h264',
-        outputLocation: join(mediaDir, 'reel.mp4'),
-        onProgress: ({ progress }) => {
-          const pct = Math.floor(progress * 10) * 10;
-          if (pct !== lastPct) process.stdout.write(`  ${pct}%`);
-          lastPct = pct;
-        },
-      });
-      process.stdout.write('\n');
+      await renderVideo(serveUrl, 'PageFlipReel', props, join(mediaDir, 'reel.mp4'));
       // Cover = end of the hook scene, once every word has landed
       const cover = await still('PageFlipReel', props, 'cover.jpg', reelTiming(spec.voiceover?.timing).hook - 12);
+      return { type: 'reel', video: 'media/reel.mp4', cover, shareToFeed: true };
+    }
+    case 'story-reel': {
+      const { template: _, ...rest } = spec;
+      if (!hasSfx()) console.log(`  (no sound effects: add ${SOUNDS.map((s) => `${s}.mp3`).join(', ')} to assets/audio/sfx)`);
+      const props = {
+        ...rest,
+        productDir,
+        sfx: hasSfx(),
+        ...(job.timing && { timing: job.timing, voiceoverSrc: voiceoverPath(job.id) }),
+        ...(spec.music && { musicSrc: musicPath(job.id) }),
+      };
+      // Busy line art at full HD comes out ~23 MB at Remotion's default; Instagram re-encodes anyway, and
+      // every reel is committed to the repo, so trade a little quality for about half the size
+      await renderVideo(serveUrl, 'StoryReel', props, join(mediaDir, 'reel.mp4'), STORY_CRF);
+      const cover = await still('StoryReel', props, 'cover.jpg', coverFrame(spec.beats, spec.cover, job.timing ?? silentTiming(spec.beats)));
       return { type: 'reel', video: 'media/reel.mp4', cover, shareToFeed: true };
     }
   }

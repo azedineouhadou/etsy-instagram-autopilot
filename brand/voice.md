@@ -45,16 +45,21 @@ Approved shop voice for the instagram-agent skills. This is the source of truth;
 - **Do I swear:** No.
 - **Emoji in captions:** One or two, playful (🖍️ 🦕 🌈 💛).
 - **Face on camera:** Faceless.
-- **Voiceover or to-camera:** Reels use a warm AI voiceover and no music. Single
-  images and carousels stay text only.
-- **Pace:** Medium and easy (speed 0.85), about 2.7 words a second. Scripts are
-  44–48 words, which makes an 18–20 second reel.
+- **Voiceover or to-camera:** Reels use a warm AI voiceover and sound effects,
+  no background music (tried four tracks on the horror reel in Nov 2026: the
+  voice alone sounded better). Single images and carousels stay text only.
+- **Pace:** Natural speed (1.0). Slowing the voice down made it sound robotic,
+  so the pauses come from the script instead: commas where a person would
+  breathe, "..." before a reveal, one idea per sentence. About 3 words a
+  second: story reels are 70–80 words over 6–10 short beats, about 25–28
+  seconds, with word-by-word captions. (Older page-flip reels were 44–48 words, 18–20 seconds.)
 
 ## How I frame the book
 
-Reels, captions and carousels all follow Problem → Solution → Benefit. On a reel
-these are the voiceover's three lines: `hook`, `pages`, `outro`. Pick the audience
-as in "Who I am".
+Reels, captions and carousels all follow Problem → Solution → Benefit. On a story
+reel the beats carry it: hook and contrast are the problem, the reveal and
+benefits the solution, "your turn" and the payoff the benefit, then the CTA.
+Pick the audience as in "Who I am".
 
 **Kids' books (write to parents)**
 
