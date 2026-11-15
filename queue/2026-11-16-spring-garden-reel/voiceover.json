@@ -1,0 +1,453 @@
+{
+  "scriptHash": "67e44d7de846ad9e",
+  "beats": [
+    96,
+    74,
+    92,
+    101,
+    80,
+    60,
+    83,
+    113
+  ],
+  "words": [
+    {
+      "beat": 0,
+      "text": "It's",
+      "startMs": 400,
+      "endMs": 640
+    },
+    {
+      "beat": 0,
+      "text": "November.",
+      "startMs": 640,
+      "endMs": 1020
+    },
+    {
+      "beat": 0,
+      "text": "Your",
+      "startMs": 1360,
+      "endMs": 1500
+    },
+    {
+      "beat": 0,
+      "text": "tulips",
+      "startMs": 1500,
+      "endMs": 1900
+    },
+    {
+      "beat": 0,
+      "text": "can",
+      "startMs": 1900,
+      "endMs": 2080
+    },
+    {
+      "beat": 0,
+      "text": "still",
+      "startMs": 2080,
+      "endMs": 2380
+    },
+    {
+      "beat": 0,
+      "text": "bloom",
+      "startMs": 2380,
+      "endMs": 2720
+    },
+    {
+      "beat": 0,
+      "text": "tonight.",
+      "startMs": 2720,
+      "endMs": 3060
+    },
+    {
+      "beat": 1,
+      "text": "Not",
+      "startMs": 3320,
+      "endMs": 3600
+    },
+    {
+      "beat": 1,
+      "text": "another",
+      "startMs": 3600,
+      "endMs": 3900
+    },
+    {
+      "beat": 1,
+      "text": "grey",
+      "startMs": 3900,
+      "endMs": 4120
+    },
+    {
+      "beat": 1,
+      "text": "evening,",
+      "startMs": 4120,
+      "endMs": 4440
+    },
+    {
+      "beat": 1,
+      "text": "just",
+      "startMs": 4480,
+      "endMs": 4700
+    },
+    {
+      "beat": 1,
+      "text": "staring",
+      "startMs": 4700,
+      "endMs": 4980
+    },
+    {
+      "beat": 1,
+      "text": "at",
+      "startMs": 4980,
+      "endMs": 5160
+    },
+    {
+      "beat": 1,
+      "text": "your",
+      "startMs": 5160,
+      "endMs": 5260
+    },
+    {
+      "beat": 1,
+      "text": "phone.",
+      "startMs": 5260,
+      "endMs": 5580
+    },
+    {
+      "beat": 2,
+      "text": "These",
+      "startMs": 5740,
+      "endMs": 5920
+    },
+    {
+      "beat": 2,
+      "text": "are",
+      "startMs": 5920,
+      "endMs": 6040
+    },
+    {
+      "beat": 2,
+      "text": "200",
+      "startMs": 6040,
+      "endMs": 6460
+    },
+    {
+      "beat": 2,
+      "text": "spring",
+      "startMs": 6460,
+      "endMs": 6940
+    },
+    {
+      "beat": 2,
+      "text": "coloring",
+      "startMs": 6940,
+      "endMs": 7320
+    },
+    {
+      "beat": 2,
+      "text": "pages,",
+      "startMs": 7320,
+      "endMs": 7720
+    },
+    {
+      "beat": 2,
+      "text": "made",
+      "startMs": 7720,
+      "endMs": 7960
+    },
+    {
+      "beat": 2,
+      "text": "for",
+      "startMs": 7960,
+      "endMs": 8120
+    },
+    {
+      "beat": 2,
+      "text": "grown-ups.",
+      "startMs": 8120,
+      "endMs": 8640
+    },
+    {
+      "beat": 3,
+      "text": "Garden",
+      "startMs": 8800,
+      "endMs": 9000
+    },
+    {
+      "beat": 3,
+      "text": "benches,",
+      "startMs": 9000,
+      "endMs": 9420
+    },
+    {
+      "beat": 3,
+      "text": "stone",
+      "startMs": 9560,
+      "endMs": 9760
+    },
+    {
+      "beat": 3,
+      "text": "paths,",
+      "startMs": 9760,
+      "endMs": 10120
+    },
+    {
+      "beat": 3,
+      "text": "brick",
+      "startMs": 10320,
+      "endMs": 10500
+    },
+    {
+      "beat": 3,
+      "text": "walls,",
+      "startMs": 10500,
+      "endMs": 10840
+    },
+    {
+      "beat": 3,
+      "text": "tulips,",
+      "startMs": 11060,
+      "endMs": 11420
+    },
+    {
+      "beat": 3,
+      "text": "and",
+      "startMs": 11500,
+      "endMs": 11560
+    },
+    {
+      "beat": 3,
+      "text": "lavender.",
+      "startMs": 11560,
+      "endMs": 11960
+    },
+    {
+      "beat": 4,
+      "text": "Now",
+      "startMs": 12240,
+      "endMs": 12400
+    },
+    {
+      "beat": 4,
+      "text": "pick",
+      "startMs": 12400,
+      "endMs": 12580
+    },
+    {
+      "beat": 4,
+      "text": "your",
+      "startMs": 12580,
+      "endMs": 12740
+    },
+    {
+      "beat": 4,
+      "text": "palette.",
+      "startMs": 12740,
+      "endMs": 13060
+    },
+    {
+      "beat": 4,
+      "text": "Soft",
+      "startMs": 13620,
+      "endMs": 14080
+    },
+    {
+      "beat": 4,
+      "text": "pink",
+      "startMs": 14080,
+      "endMs": 14300
+    },
+    {
+      "beat": 4,
+      "text": "tulips?",
+      "startMs": 14300,
+      "endMs": 14760
+    },
+    {
+      "beat": 5,
+      "text": "Or",
+      "startMs": 14760,
+      "endMs": 14960
+    },
+    {
+      "beat": 5,
+      "text": "lilac",
+      "startMs": 14960,
+      "endMs": 15380
+    },
+    {
+      "beat": 5,
+      "text": "lavender,",
+      "startMs": 15380,
+      "endMs": 15760
+    },
+    {
+      "beat": 5,
+      "text": "by",
+      "startMs": 15760,
+      "endMs": 16040
+    },
+    {
+      "beat": 5,
+      "text": "the",
+      "startMs": 16040,
+      "endMs": 16160
+    },
+    {
+      "beat": 5,
+      "text": "brick",
+      "startMs": 16160,
+      "endMs": 16380
+    },
+    {
+      "beat": 5,
+      "text": "wall?",
+      "startMs": 16380,
+      "endMs": 16680
+    },
+    {
+      "beat": 6,
+      "text": "Print",
+      "startMs": 16840,
+      "endMs": 17180
+    },
+    {
+      "beat": 6,
+      "text": "it",
+      "startMs": 17180,
+      "endMs": 17340
+    },
+    {
+      "beat": 6,
+      "text": "at",
+      "startMs": 17340,
+      "endMs": 17480
+    },
+    {
+      "beat": 6,
+      "text": "home,",
+      "startMs": 17480,
+      "endMs": 17820
+    },
+    {
+      "beat": 6,
+      "text": "or",
+      "startMs": 17820,
+      "endMs": 18160
+    },
+    {
+      "beat": 6,
+      "text": "color",
+      "startMs": 18160,
+      "endMs": 18440
+    },
+    {
+      "beat": 6,
+      "text": "it",
+      "startMs": 18440,
+      "endMs": 18600
+    },
+    {
+      "beat": 6,
+      "text": "right",
+      "startMs": 18600,
+      "endMs": 18780
+    },
+    {
+      "beat": 6,
+      "text": "on",
+      "startMs": 18780,
+      "endMs": 18920
+    },
+    {
+      "beat": 6,
+      "text": "your",
+      "startMs": 18920,
+      "endMs": 19060
+    },
+    {
+      "beat": 6,
+      "text": "tablet.",
+      "startMs": 19060,
+      "endMs": 19420
+    },
+    {
+      "beat": 7,
+      "text": "You",
+      "startMs": 19660,
+      "endMs": 19740
+    },
+    {
+      "beat": 7,
+      "text": "can",
+      "startMs": 19740,
+      "endMs": 19900
+    },
+    {
+      "beat": 7,
+      "text": "grab",
+      "startMs": 19900,
+      "endMs": 20120
+    },
+    {
+      "beat": 7,
+      "text": "the",
+      "startMs": 20120,
+      "endMs": 20280
+    },
+    {
+      "beat": 7,
+      "text": "printable",
+      "startMs": 20280,
+      "endMs": 20700
+    },
+    {
+      "beat": 7,
+      "text": "version",
+      "startMs": 20700,
+      "endMs": 21020
+    },
+    {
+      "beat": 7,
+      "text": "right",
+      "startMs": 21020,
+      "endMs": 21280
+    },
+    {
+      "beat": 7,
+      "text": "from",
+      "startMs": 21280,
+      "endMs": 21480
+    },
+    {
+      "beat": 7,
+      "text": "the",
+      "startMs": 21480,
+      "endMs": 21600
+    },
+    {
+      "beat": 7,
+      "text": "link",
+      "startMs": 21600,
+      "endMs": 21780
+    },
+    {
+      "beat": 7,
+      "text": "in",
+      "startMs": 21780,
+      "endMs": 21900
+    },
+    {
+      "beat": 7,
+      "text": "my",
+      "startMs": 21900,
+      "endMs": 22060
+    },
+    {
+      "beat": 7,
+      "text": "bio.",
+      "startMs": 22060,
+      "endMs": 22300
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "template": "carousel",
+  "slides": [
+    { "kind": "cover", "eyebrow": "Cozy Girl Christmas coloring", "headline": "Cocoa, a cozy fire and a page to color", "subline": "Swipe for 4 of the 50 pages", "image": "interior/image-5.jpg" },
+    { "kind": "page", "caption": "1. Snow at the window, cocoa in hand", "image": "interior/image-1.jpg" },
+    { "kind": "page", "caption": "2. Stockings up by the fire", "image": "interior/image-6.jpg" },
+    { "kind": "page", "caption": "3. A gingerbread house with candy canes", "image": "interior/image-4.jpg" },
+    { "kind": "page", "caption": "4. A snowman in a Santa hat", "image": "interior/image-10.jpg" },
+    { "kind": "cta", "headline": "50 bold and easy Christmas pages", "image": "interior/image-8.jpg", "points": ["5 book covers to make it a real book", "8.5 x 8.5 in square pages, 300 DPI", "PDF, JPG and PNG, instant download"], "cta": "Link in bio" }
+  ]
+}
