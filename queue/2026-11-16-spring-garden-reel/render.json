@@ -1,0 +1,51 @@
+{
+  "template": "story-reel",
+  "backdrop": "interior/Untitled-1-06.png",
+  "beats": [
+    {
+      "say": "It's November. Your tulips can still bloom tonight.",
+      "scene": { "kind": "zoom", "image": "interior/Untitled-1-05.png", "from": [0.5, 0.5, 1], "to": [0.78, 0.75, 1.6] },
+      "stickers": [{ "kind": "circle", "x": 0.84, "y": 0.8, "r": 0.13, "on": "tulips" }],
+      "emphasis": ["tulips"]
+    },
+    {
+      "say": "Not another grey evening, just staring at your phone.",
+      "scene": { "kind": "contrast", "before": "Grey evening on the phone", "after": "A spring garden to color" },
+      "emphasis": ["grey"]
+    },
+    {
+      "say": "These are 200 spring coloring pages, made for grown-ups.",
+      "scene": { "kind": "cover", "image": "interior/Untitled-1-02.png" },
+      "stickers": [{ "kind": "count", "value": 200, "label": "pages", "on": "200" }],
+      "emphasis": ["200"]
+    },
+    {
+      "say": "Garden benches, stone paths, brick walls, tulips, and lavender.",
+      "scene": { "kind": "pages", "images": ["interior/Untitled-1-06.png", "interior/Untitled-1-08.png", "interior/Untitled-1-03.png"] },
+      "stickers": [{ "kind": "chips", "items": ["Garden benches", "Stone paths", "Tulips & lavender"], "on": "benches" }],
+      "emphasis": ["benches"]
+    },
+    {
+      "say": "Now pick your palette. Soft pink tulips?",
+      "scene": { "kind": "zoom", "image": "interior/Untitled-1-08.png", "from": [0.5, 0.5, 1], "to": [0.8, 0.82, 1.6] },
+      "stickers": [{ "kind": "chips", "items": ["Soft pink", "Lilac", "Sage green"], "on": "palette" }],
+      "emphasis": ["palette"]
+    },
+    {
+      "say": "Or lilac lavender, by the brick wall?",
+      "scene": { "kind": "zoom", "image": "interior/Untitled-1-08.png", "from": [0.8, 0.82, 1.6], "to": [0.68, 0.4, 1.6] },
+      "emphasis": ["lavender"]
+    },
+    {
+      "say": "Print it at home, or color it right on your tablet.",
+      "scene": { "kind": "zoom", "image": "interior/Untitled-1-01.png", "from": [0.5, 0.5, 1], "to": [0.5, 0.6, 1.3] },
+      "stickers": [{ "kind": "pill", "text": "Paper or tablet", "on": "tablet" }],
+      "emphasis": ["tablet"]
+    },
+    {
+      "say": "You can grab the printable version right from the link in my bio.",
+      "scene": { "kind": "cta", "image": "interior/Untitled-1-01.png", "title": "Spring Floral Coloring Pages for Adults", "points": ["200 pages", "Instant download"] },
+      "emphasis": ["bio"]
+    }
+  ]
+}

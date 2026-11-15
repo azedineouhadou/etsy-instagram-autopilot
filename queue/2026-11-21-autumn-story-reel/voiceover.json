@@ -1,0 +1,447 @@
+{
+  "scriptHash": "eb61b04442586433",
+  "beats": [
+    84,
+    60,
+    74,
+    109,
+    89,
+    75,
+    88,
+    111
+  ],
+  "words": [
+    {
+      "beat": 0,
+      "text": "Never",
+      "startMs": 400,
+      "endMs": 700
+    },
+    {
+      "beat": 0,
+      "text": "tried",
+      "startMs": 700,
+      "endMs": 1000
+    },
+    {
+      "beat": 0,
+      "text": "color",
+      "startMs": 1000,
+      "endMs": 1300
+    },
+    {
+      "beat": 0,
+      "text": "by",
+      "startMs": 1300,
+      "endMs": 1500
+    },
+    {
+      "beat": 0,
+      "text": "number?",
+      "startMs": 1500,
+      "endMs": 1820
+    },
+    {
+      "beat": 0,
+      "text": "Start",
+      "startMs": 1980,
+      "endMs": 2400
+    },
+    {
+      "beat": 0,
+      "text": "here.",
+      "startMs": 2400,
+      "endMs": 2720
+    },
+    {
+      "beat": 1,
+      "text": "Not",
+      "startMs": 2860,
+      "endMs": 3000
+    },
+    {
+      "beat": 1,
+      "text": "another",
+      "startMs": 3000,
+      "endMs": 3260
+    },
+    {
+      "beat": 1,
+      "text": "Saturday",
+      "startMs": 3260,
+      "endMs": 3640
+    },
+    {
+      "beat": 1,
+      "text": "lost",
+      "startMs": 3640,
+      "endMs": 3940
+    },
+    {
+      "beat": 1,
+      "text": "to",
+      "startMs": 3940,
+      "endMs": 4120
+    },
+    {
+      "beat": 1,
+      "text": "doom",
+      "startMs": 4120,
+      "endMs": 4320
+    },
+    {
+      "beat": 1,
+      "text": "scrolling.",
+      "startMs": 4320,
+      "endMs": 4720
+    },
+    {
+      "beat": 2,
+      "text": "Meet",
+      "startMs": 4880,
+      "endMs": 5020
+    },
+    {
+      "beat": 2,
+      "text": "my",
+      "startMs": 5020,
+      "endMs": 5180
+    },
+    {
+      "beat": 2,
+      "text": "autumn",
+      "startMs": 5180,
+      "endMs": 5420
+    },
+    {
+      "beat": 2,
+      "text": "book,",
+      "startMs": 5420,
+      "endMs": 5680
+    },
+    {
+      "beat": 2,
+      "text": "with",
+      "startMs": 5680,
+      "endMs": 5860
+    },
+    {
+      "beat": 2,
+      "text": "10",
+      "startMs": 5860,
+      "endMs": 6080
+    },
+    {
+      "beat": 2,
+      "text": "learner",
+      "startMs": 6080,
+      "endMs": 6320
+    },
+    {
+      "beat": 2,
+      "text": "pages",
+      "startMs": 6320,
+      "endMs": 6660
+    },
+    {
+      "beat": 2,
+      "text": "to",
+      "startMs": 6660,
+      "endMs": 6900
+    },
+    {
+      "beat": 2,
+      "text": "start.",
+      "startMs": 6900,
+      "endMs": 7200
+    },
+    {
+      "beat": 3,
+      "text": "Learn",
+      "startMs": 7360,
+      "endMs": 7480
+    },
+    {
+      "beat": 3,
+      "text": "the",
+      "startMs": 7480,
+      "endMs": 7640
+    },
+    {
+      "beat": 3,
+      "text": "colors",
+      "startMs": 7640,
+      "endMs": 7940
+    },
+    {
+      "beat": 3,
+      "text": "there",
+      "startMs": 7940,
+      "endMs": 8160
+    },
+    {
+      "beat": 3,
+      "text": "first.",
+      "startMs": 8160,
+      "endMs": 8600
+    },
+    {
+      "beat": 3,
+      "text": "Then",
+      "startMs": 8720,
+      "endMs": 9000
+    },
+    {
+      "beat": 3,
+      "text": "practice",
+      "startMs": 9000,
+      "endMs": 9320
+    },
+    {
+      "beat": 3,
+      "text": "on",
+      "startMs": 9320,
+      "endMs": 9500
+    },
+    {
+      "beat": 3,
+      "text": "65",
+      "startMs": 9500,
+      "endMs": 9920
+    },
+    {
+      "beat": 3,
+      "text": "autumn",
+      "startMs": 9920,
+      "endMs": 10360
+    },
+    {
+      "beat": 3,
+      "text": "scenes.",
+      "startMs": 10360,
+      "endMs": 10800
+    },
+    {
+      "beat": 4,
+      "text": "Pumpkins,",
+      "startMs": 11000,
+      "endMs": 11420
+    },
+    {
+      "beat": 4,
+      "text": "falling",
+      "startMs": 11520,
+      "endMs": 11780
+    },
+    {
+      "beat": 4,
+      "text": "leaves,",
+      "startMs": 11780,
+      "endMs": 12140
+    },
+    {
+      "beat": 4,
+      "text": "acorns,",
+      "startMs": 12360,
+      "endMs": 12860
+    },
+    {
+      "beat": 4,
+      "text": "and",
+      "startMs": 12980,
+      "endMs": 13060
+    },
+    {
+      "beat": 4,
+      "text": "cozy",
+      "startMs": 13060,
+      "endMs": 13360
+    },
+    {
+      "beat": 4,
+      "text": "corners.",
+      "startMs": 13360,
+      "endMs": 13740
+    },
+    {
+      "beat": 5,
+      "text": "Pick",
+      "startMs": 14000,
+      "endMs": 14160
+    },
+    {
+      "beat": 5,
+      "text": "your",
+      "startMs": 14160,
+      "endMs": 14340
+    },
+    {
+      "beat": 5,
+      "text": "palette.",
+      "startMs": 14340,
+      "endMs": 14660
+    },
+    {
+      "beat": 5,
+      "text": "Rust,",
+      "startMs": 14900,
+      "endMs": 15220
+    },
+    {
+      "beat": 5,
+      "text": "mustard,",
+      "startMs": 15400,
+      "endMs": 15640
+    },
+    {
+      "beat": 5,
+      "text": "deep",
+      "startMs": 15760,
+      "endMs": 15880
+    },
+    {
+      "beat": 5,
+      "text": "orange?",
+      "startMs": 15880,
+      "endMs": 16180
+    },
+    {
+      "beat": 6,
+      "text": "One",
+      "startMs": 16580,
+      "endMs": 16780
+    },
+    {
+      "beat": 6,
+      "text": "page,",
+      "startMs": 16780,
+      "endMs": 17140
+    },
+    {
+      "beat": 6,
+      "text": "a",
+      "startMs": 17220,
+      "endMs": 17320
+    },
+    {
+      "beat": 6,
+      "text": "warm",
+      "startMs": 17320,
+      "endMs": 17560
+    },
+    {
+      "beat": 6,
+      "text": "drink,",
+      "startMs": 17560,
+      "endMs": 17880
+    },
+    {
+      "beat": 6,
+      "text": "and",
+      "startMs": 18000,
+      "endMs": 18180
+    },
+    {
+      "beat": 6,
+      "text": "your",
+      "startMs": 18180,
+      "endMs": 18320
+    },
+    {
+      "beat": 6,
+      "text": "phone",
+      "startMs": 18320,
+      "endMs": 18600
+    },
+    {
+      "beat": 6,
+      "text": "face",
+      "startMs": 18600,
+      "endMs": 18900
+    },
+    {
+      "beat": 6,
+      "text": "down.",
+      "startMs": 18900,
+      "endMs": 19200
+    },
+    {
+      "beat": 7,
+      "text": "You",
+      "startMs": 19380,
+      "endMs": 19500
+    },
+    {
+      "beat": 7,
+      "text": "can",
+      "startMs": 19500,
+      "endMs": 19640
+    },
+    {
+      "beat": 7,
+      "text": "grab",
+      "startMs": 19640,
+      "endMs": 19840
+    },
+    {
+      "beat": 7,
+      "text": "the",
+      "startMs": 19840,
+      "endMs": 20000
+    },
+    {
+      "beat": 7,
+      "text": "printable",
+      "startMs": 20000,
+      "endMs": 20360
+    },
+    {
+      "beat": 7,
+      "text": "version",
+      "startMs": 20360,
+      "endMs": 20680
+    },
+    {
+      "beat": 7,
+      "text": "right",
+      "startMs": 20680,
+      "endMs": 20920
+    },
+    {
+      "beat": 7,
+      "text": "from",
+      "startMs": 20920,
+      "endMs": 21120
+    },
+    {
+      "beat": 7,
+      "text": "the",
+      "startMs": 21120,
+      "endMs": 21240
+    },
+    {
+      "beat": 7,
+      "text": "link",
+      "startMs": 21240,
+      "endMs": 21440
+    },
+    {
+      "beat": 7,
+      "text": "in",
+      "startMs": 21440,
+      "endMs": 21560
+    },
+    {
+      "beat": 7,
+      "text": "my",
+      "startMs": 21560,
+      "endMs": 21720
+    },
+    {
+      "beat": 7,
+      "text": "bio.",
+      "startMs": 21720,
+      "endMs": 22000
+    }
+  ]
+}

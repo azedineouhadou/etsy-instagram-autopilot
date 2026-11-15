@@ -1,0 +1,10 @@
+{
+  "template": "spotlight",
+  "background": "lavender",
+  "eyebrow": "New: Lily coloring book",
+  "headline": "A quiet hour, a cup of tea, one lily",
+  "subline": "50 detailed lily pages, with fine stippling on many petals",
+  "mockup": "mockups/mockup-1.jpg",
+  "badges": ["50 unique pages", "US Letter 8.5 x 11 in", "Instant download"],
+  "cta": "Link in bio"
+}

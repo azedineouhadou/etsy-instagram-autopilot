@@ -1,0 +1,51 @@
+{
+  "template": "story-reel",
+  "backdrop": "mockups/3.png",
+  "beats": [
+    {
+      "say": "Never tried color by number? Start here.",
+      "scene": { "kind": "zoom", "image": "mockups/1.png", "from": [0.5, 0.5, 1], "to": [0.5, 0.22, 1.6] },
+      "emphasis": ["number"]
+    },
+    {
+      "say": "Not another Saturday lost to doom scrolling.",
+      "scene": { "kind": "contrast", "before": "Saturday doom scrolling", "after": "One slow autumn page" },
+      "emphasis": ["scrolling"]
+    },
+    {
+      "say": "Meet my autumn book, with 10 learner pages to start.",
+      "scene": { "kind": "cover", "image": "mockups/1.png" },
+      "stickers": [{ "kind": "count", "value": 10, "label": "learner pages", "on": "10" }],
+      "emphasis": ["learner"]
+    },
+    {
+      "say": "Learn the colors there first. Then practice on 65 autumn scenes.",
+      "scene": { "kind": "pages", "images": ["interior/file-02.png", "interior/file-05.png", "interior/file-10.png"] },
+      "stickers": [{ "kind": "count", "value": 65, "label": "autumn scenes", "on": "65" }],
+      "emphasis": ["65"]
+    },
+    {
+      "say": "Pumpkins, falling leaves, acorns, and cozy corners.",
+      "scene": { "kind": "zoom", "image": "interior/file-04.png", "from": [0.5, 0.5, 1], "to": [0.5, 0.45, 1.4] },
+      "stickers": [{ "kind": "chips", "items": ["Pumpkins", "Falling leaves", "Acorns"], "on": "leaves" }],
+      "emphasis": ["Pumpkins"]
+    },
+    {
+      "say": "Pick your palette. Rust, mustard, deep orange?",
+      "scene": { "kind": "zoom", "image": "interior/file-07.png", "from": [0.5, 0.5, 1], "to": [0.5, 0.45, 1.5] },
+      "stickers": [{ "kind": "chips", "items": ["Rust", "Mustard", "Deep orange"], "on": "palette" }],
+      "emphasis": ["palette"]
+    },
+    {
+      "say": "One page, a warm drink, and your phone face down.",
+      "scene": { "kind": "zoom", "image": "mockups/3.png", "from": [0.5, 0.5, 1], "to": [0.42, 0.55, 1.4] },
+      "stickers": [{ "kind": "pill", "text": "Phone face down", "on": "down" }],
+      "emphasis": ["warm"]
+    },
+    {
+      "say": "You can grab the printable version right from the link in my bio.",
+      "scene": { "kind": "cta", "image": "mockups/1.png", "title": "Autumn Color by Number for Adults", "points": ["80-page PDF", "Instant download"] },
+      "emphasis": ["bio"]
+    }
+  ]
+}
