@@ -1,0 +1,43 @@
+{
+  "template": "carousel",
+  "slides": [
+    {
+      "kind": "cover",
+      "eyebrow": "Vintage Winter coloring",
+      "headline": "A snow globe for every winter evening",
+      "subline": "Swipe for 4 of the 100 pages",
+      "image": "interior/1-01.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "1. A whole village in a mason jar",
+      "image": "interior/9-01.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "2. A snowman sealed in glass",
+      "image": "interior/8-01.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "3. A snowy cottage, chimney and all",
+      "image": "interior/10-01.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "4. Poinsettias and holly, packed with detail",
+      "image": "interior/3-01.jpg"
+    },
+    {
+      "kind": "cta",
+      "headline": "100 vintage winter pages",
+      "image": "interior/7-01.jpg",
+      "points": [
+        "Snow globes, cottages, snowmen, ornaments",
+        "US Letter 8.5 x 11 in at 300 PPI",
+        "Print-ready PDF + JPG, instant download"
+      ],
+      "cta": "Link in bio"
+    }
+  ]
+}

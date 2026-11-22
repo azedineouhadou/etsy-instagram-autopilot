@@ -1,0 +1,165 @@
+{
+  "template": "story-reel",
+  "backdrop": "mockups/1.jpg",
+  "beats": [
+    {
+      "say": "Thanksgiving night, 66 Christmas scenes, and one old red truck.",
+      "scene": {
+        "kind": "zoom",
+        "image": "mockups/1.jpg",
+        "from": [
+          0.5,
+          0.5,
+          1
+        ],
+        "to": [
+          0.45,
+          0.72,
+          1.8
+        ]
+      },
+      "emphasis": [
+        "truck"
+      ]
+    },
+    {
+      "say": "Dishes done? Skip the late night scrolling.",
+      "scene": {
+        "kind": "contrast",
+        "before": "Scrolling till midnight",
+        "after": "One slow farmhouse page"
+      },
+      "emphasis": [
+        "scrolling"
+      ]
+    },
+    {
+      "say": "Meet my Country Christmas coloring book, 66 scenes for adults.",
+      "scene": {
+        "kind": "cover",
+        "image": "mockups/1.jpg"
+      },
+      "stickers": [
+        {
+          "kind": "count",
+          "value": 66,
+          "label": "scenes",
+          "on": "66"
+        }
+      ],
+      "emphasis": [
+        "Country"
+      ]
+    },
+    {
+      "say": "Log cabins, candlelit windows, and a wagon full of gifts.",
+      "scene": {
+        "kind": "pages",
+        "images": [
+          "interior/01.png",
+          "interior/06.png",
+          "interior/03.png"
+        ]
+      },
+      "stickers": [
+        {
+          "kind": "chips",
+          "items": [
+            "Bold, open lines",
+            "Beginner friendly"
+          ],
+          "on": "windows"
+        }
+      ],
+      "emphasis": [
+        "candlelit"
+      ]
+    },
+    {
+      "say": "Pick your palette. Barn red, pine green, snowy white?",
+      "scene": {
+        "kind": "zoom",
+        "image": "interior/02.png",
+        "from": [
+          0.5,
+          0.5,
+          1
+        ],
+        "to": [
+          0.5,
+          0.5,
+          1.5
+        ]
+      },
+      "stickers": [
+        {
+          "kind": "chips",
+          "items": [
+            "Barn red",
+            "Pine green",
+            "Snowy white"
+          ],
+          "on": "palette"
+        }
+      ],
+      "emphasis": [
+        "palette"
+      ]
+    },
+    {
+      "say": "Then watch the old truck come alive.",
+      "scene": {
+        "kind": "reveal",
+        "from": "interior/02.png",
+        "to": "mockups/3.jpg"
+      },
+      "stickers": [],
+      "emphasis": [
+        "alive"
+      ]
+    },
+    {
+      "say": "Print one of the 23 covers, bind the pages, and it's a gift.",
+      "scene": {
+        "kind": "zoom",
+        "image": "mockups/2.jpg",
+        "from": [
+          0.5,
+          0.5,
+          1
+        ],
+        "to": [
+          0.5,
+          0.5,
+          1.3
+        ]
+      },
+      "stickers": [
+        {
+          "kind": "count",
+          "value": 23,
+          "label": "covers",
+          "on": "23"
+        }
+      ],
+      "emphasis": [
+        "gift"
+      ]
+    },
+    {
+      "say": "You can grab the printable version right from the link in my bio.",
+      "scene": {
+        "kind": "cta",
+        "image": "mockups/1.jpg",
+        "title": "Country Christmas Coloring Book",
+        "points": [
+          "66 scenes + 23 covers",
+          "Instant download"
+        ]
+      },
+      "emphasis": [
+        "bio"
+      ]
+    }
+  ]
+}

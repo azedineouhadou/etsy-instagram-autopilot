@@ -1,0 +1,180 @@
+{
+  "template": "story-reel",
+  "backdrop": "interior/(1).png",
+  "beats": [
+    {
+      "say": "You can read every letter here. 100 puzzles, no squinting.",
+      "scene": {
+        "kind": "zoom",
+        "image": "interior/(3).png",
+        "from": [
+          0.5,
+          0.45,
+          1
+        ],
+        "to": [
+          0.5,
+          0.45,
+          1.7
+        ]
+      },
+      "emphasis": [
+        "every"
+      ]
+    },
+    {
+      "say": "Not another evening lost to the phone.",
+      "scene": {
+        "kind": "contrast",
+        "before": "Another evening on the phone",
+        "after": "One puzzle and a cup of tea"
+      },
+      "emphasis": [
+        "phone"
+      ]
+    },
+    {
+      "say": "Meet my large print word search book, with 100 puzzles.",
+      "scene": {
+        "kind": "cover",
+        "image": "interior/(1).png"
+      },
+      "stickers": [
+        {
+          "kind": "count",
+          "value": 100,
+          "label": "puzzles",
+          "on": "100"
+        }
+      ],
+      "emphasis": [
+        "large"
+      ]
+    },
+    {
+      "say": "Warm, easy themes. Tea time, garden joys, family memories.",
+      "scene": {
+        "kind": "pages",
+        "images": [
+          "interior/(5).png",
+          "interior/(7).png",
+          "interior/(4).png"
+        ]
+      },
+      "stickers": [
+        {
+          "kind": "chips",
+          "items": [
+            "Tea Time",
+            "Garden Joys",
+            "Family Memories"
+          ],
+          "on": "themes"
+        }
+      ],
+      "emphasis": [
+        "easy"
+      ]
+    },
+    {
+      "say": "Your turn. Breakfast is hiding in here. Found it?",
+      "scene": {
+        "kind": "zoom",
+        "image": "interior/(3).png",
+        "from": [
+          0.5,
+          0.5,
+          1.2
+        ],
+        "to": [
+          0.53,
+          0.66,
+          1.8
+        ]
+      },
+      "stickers": [
+        {
+          "kind": "circle",
+          "x": 0.535,
+          "y": 0.697,
+          "r": 0.2,
+          "on": "Breakfast"
+        }
+      ],
+      "emphasis": [
+        "Breakfast"
+      ]
+    },
+    {
+      "say": "Stuck on one? Complete solutions are included, plus the full word list.",
+      "scene": {
+        "kind": "zoom",
+        "image": "interior/(6).png",
+        "from": [
+          0.5,
+          0.5,
+          1
+        ],
+        "to": [
+          0.5,
+          0.4,
+          1.4
+        ]
+      },
+      "stickers": [
+        {
+          "kind": "checks",
+          "items": [
+            "Complete solutions",
+            "Full word list"
+          ]
+        }
+      ],
+      "emphasis": [
+        "solutions"
+      ]
+    },
+    {
+      "say": "2,000 words to find, on 8.5 by 11 inch pages.",
+      "scene": {
+        "kind": "pages",
+        "images": [
+          "interior/(3).png",
+          "interior/(6).png",
+          "interior/(7).png"
+        ]
+      },
+      "stickers": [
+        {
+          "kind": "count",
+          "value": 2000,
+          "label": "words",
+          "on": "words"
+        },
+        {
+          "kind": "pill",
+          "text": "Found them all!",
+          "on": "pages"
+        }
+      ],
+      "emphasis": [
+        "2,000"
+      ]
+    },
+    {
+      "say": "You can grab the printable version right from the link in my bio.",
+      "scene": {
+        "kind": "cta",
+        "image": "interior/(1).png",
+        "title": "Large Print Word Search",
+        "points": [
+          "100 puzzles + solutions",
+          "Instant download"
+        ]
+      },
+      "emphasis": [
+        "bio"
+      ]
+    }
+  ]
+}

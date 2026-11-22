@@ -1,0 +1,14 @@
+{
+  "template": "spotlight",
+  "background": "peach",
+  "eyebrow": "New: Cozy Christmas coloring",
+  "headline": "Kids home all weekend? Print 45 cozy pages",
+  "subline": "Santa, a snowman, a kitten in a gift box and a log cabin in the snow",
+  "mockup": "mockups/mockup-1.jpg",
+  "badges": [
+    "45 bold, easy pages",
+    "8.5 x 8.5 in squares",
+    "Instant download"
+  ],
+  "cta": "Link in bio"
+}
