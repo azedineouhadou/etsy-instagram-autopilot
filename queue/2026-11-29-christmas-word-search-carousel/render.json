@@ -1,0 +1,43 @@
+{
+  "template": "carousel",
+  "slides": [
+    {
+      "kind": "cover",
+      "eyebrow": "Christmas word search",
+      "headline": "Who finds JINGLE first, kids or grown-ups?",
+      "subline": "Swipe for 4 of the 50 puzzles",
+      "image": "mockups/3.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "1. Holly, jingle and the nutcracker",
+      "image": "interior/aa_christmas_puzzle_3.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "2. Bells, carols and a candy cane",
+      "image": "interior/aa_christmas_puzzle_1.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "3. Baking, candles and baubles",
+      "image": "interior/aa_christmas_puzzle_6.jpg"
+    },
+    {
+      "kind": "page",
+      "caption": "4. Cheer, cookies and cranberries",
+      "image": "interior/aa_christmas_puzzle_7.jpg"
+    },
+    {
+      "kind": "cta",
+      "headline": "50 puzzles. Hit print. It fits.",
+      "image": "mockups/1.jpg",
+      "points": [
+        "Large print, easy to read and solve",
+        "US Letter 8.5 x 11 in, prints at 100%",
+        "Print-ready PDF + JPG, instant download"
+      ],
+      "cta": "Link in bio"
+    }
+  ]
+}
